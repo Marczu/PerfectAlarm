@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainScreen">
+    tools:context=".MainScreenContainer">
 
 
     <android.support.design.widget.BottomNavigationView
@@ -16,6 +16,15 @@
         app:itemIconTint="#FFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <!--Container for Alarm and Stoper fragment-->
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_below="@+id/main_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
