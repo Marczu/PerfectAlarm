@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/alarm"
+        android:id="@+id/alarm_menu"
         android:title="Budzik"
         android:icon="@drawable/ic_alarm_black_24dp"/>
 
     <item
-        android:id="@+id/stoper"
+        android:id="@+id/stoper_menu"
         android:title="Stoper"
         android:icon="@drawable/ic_stoper"
         />
