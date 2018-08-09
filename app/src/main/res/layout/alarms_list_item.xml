@@ -1,11 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <RelativeLayout
+        android:background="@drawable/light_white_rounded_item"
+        android:id="@+id/alarm_item_rel_layout"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <!--Alarm Delete-->
+        <ImageView
+            android:id="@+id/alarm_item_delete_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_delete_24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            />
+
+        <!--On/Off Alarm switch-->
+        <Switch
+            android:id="@+id/alarm_item_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@+id/alarm_item_delete_alarm"
+            android:layout_centerInParent="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/relLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Alarm Time-->
+            <TextView
+                android:id="@+id/alarm_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="8:00"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <!--Alarm Title-->
+            <TextView
+                android:id="@+id/alarm_item_title"
+                android:layout_toRightOf="@+id/alarm_item_time"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/grey"
+                tools:text="Mój Alarm"/>
+
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_days_of_week"
+            android:src="@drawable/ic_repeat"
+            android:layout_below="@+id/relLayout1"
+            android:layout_marginLeft="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/alarm_item_tv_days_of_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relLayout1"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_days_of_week"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            tools:text="Codziennie"/>
+
+
+
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
