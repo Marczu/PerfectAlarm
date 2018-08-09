@@ -1,8 +1,5 @@
-package com.marcinmejner.simplealarm.Alarm
+package com.marcinmejner.simplealarm.alarm
 
-import android.app.Application
-import android.content.Context
-import org.junit.Assert.*
 import org.junit.Before
 
 class AlarmsViewModelTest{

@@ -1,4 +1,4 @@
-package com.marcinmejner.simplealarm.Alarm
+package com.marcinmejner.simplealarm.alarm
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

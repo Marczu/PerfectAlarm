@@ -9,9 +9,9 @@ import java.util.*
 data class AlarmEntity(
         @PrimaryKey(autoGenerate = true) var id: Int = 0,
         var alarmTime: Date? = null,
-        var snoozeMinutes: Int = -1,
-        var snoozeTime: Int = 10,
-        var name: String = "",
+        var snoozeMinutes: Int = 10,
+        var snoozeTime: Int? = null,
+        var name: String = "Mój budzik",
         var ringTone: String = "",
         var isAlarmEnabled: Boolean = true,
         var isSnoozeEnabled: Boolean = false
