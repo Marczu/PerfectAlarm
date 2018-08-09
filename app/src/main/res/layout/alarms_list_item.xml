@@ -7,11 +7,21 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:background="@drawable/light_white_rounded_item"
         android:id="@+id/alarm_item_rel_layout"
+        android:background="@drawable/light_white_rounded_item"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <!--Alarm Title-->
+        <TextView
+            android:id="@+id/alarm_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            tools:text="Mój Alarm"/>
 
         <!--Alarm Delete-->
         <ImageView
@@ -36,6 +46,7 @@
 
         <RelativeLayout
             android:id="@+id/relLayout1"
+            android:layout_below="@+id/alarm_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -50,16 +61,30 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <!--Alarm Title-->
+
+
             <TextView
-                android:id="@+id/alarm_item_title"
+                android:id="@+id/snooze_tv"
+                android:textSize="12sp"
                 android:layout_toRightOf="@+id/alarm_item_time"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
                 android:textColor="@color/grey"
-                tools:text="Mój Alarm"/>
+                android:layout_marginLeft="25dp"
+                android:text="Drzemka: "/>
+
+            <!--Snooze time in minutes-->
+            <TextView
+                android:id="@+id/alarm_snooze_time_tv"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/snooze_tv"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                tools:text="10 min"/>
 
 
 
@@ -73,6 +98,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp" />
 
+        <!--Days of Week-->
         <TextView
             android:id="@+id/alarm_item_tv_days_of_week"
             android:layout_width="wrap_content"

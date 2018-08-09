@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import com.marcinmejner.simplealarm.R
+import kotlinx.android.synthetic.main.alarms_list_item.view.*
 
 class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val context: Context) : RecyclerView.Adapter<AlarmsRecyclerViewAdapter.ViewHolder>() {
     private val TAG = "AlarmsRecyclerViewAdapt"
@@ -22,9 +23,15 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        val alarmItemLayout = view.alarm_item_rel_layout
+        val deleteAlarm = view.alarm_item_delete_alarm
+        val alarmSwitch = view.alarm_item_switch
+        val alarmTime = view.alarm_item_time
+        val alarmSnoozeTime = view.alarm_snooze_time_tv
     }
 }
