@@ -38,7 +38,7 @@ class DataBaseTest {
     }
 
     @Test
-    fun createAndRetriveNotes() {
+    fun appDatabse_createDbAndRetriveCount_succes() {
         dao?.insertAll(SampleAlarmData().getSampleAlarms())
         var count = dao?.getCount()
         Log.d(TAG, "createAndRetriveNotes: count $count")
@@ -47,7 +47,7 @@ class DataBaseTest {
     }
 
     @Test
-    fun compareStrings() {
+    fun appDatabse_retriveDbValues_succes() {
         dao?.insertAll(SampleAlarmData().getSampleAlarms())
         val original: AlarmEntity = SampleAlarmData().getSampleAlarms()[0]
         val fromDb: AlarmEntity = dao?.getAlarmById(1)!!
