@@ -14,9 +14,6 @@ import kotlinx.android.synthetic.main.alarm_list_item.view.*
 class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val context: Context) : RecyclerView.Adapter<AlarmsRecyclerViewAdapter.ViewHolder>() {
     private val TAG = "AlarmsRecyclerViewAdapt"
 
-    init {
-        Log.d(TAG, "init RV tytuł to: ${alarmsList[1].name}: ")
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.alarm_list_item, parent,false)

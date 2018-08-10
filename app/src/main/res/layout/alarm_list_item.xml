@@ -59,7 +59,7 @@
                 android:layout_marginLeft="15dp"
                 android:text="8:00"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="37sp"
                 android:textStyle="bold" />
 
 

@@ -33,7 +33,7 @@ class AppRepository private constructor(context: Context) {
 
     fun addSampleData() {
         executor.execute {
-            db.alarmeDao().insertAlarm(SampleAlarmData().getNotes())
+            db.alarmeDao().insertAll(SampleAlarmData().getSampleAlarms())
         }
     }
 

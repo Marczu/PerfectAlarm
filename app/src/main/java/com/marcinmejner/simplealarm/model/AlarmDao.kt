@@ -9,6 +9,9 @@ interface AlarmDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAlarm(alarmEntity: AlarmEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(notes: List<AlarmEntity>)
+
     @Delete
     fun deleteAlarm(alarmEntity: AlarmEntity)
 
@@ -26,5 +29,7 @@ interface AlarmDao {
 
     @Query("DELETE FROM alarm ")
     fun deleteAll() : Int
+
+
 
 }
