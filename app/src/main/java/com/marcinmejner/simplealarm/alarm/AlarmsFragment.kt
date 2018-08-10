@@ -40,38 +40,28 @@ class AlarmsFragment : Fragment() {
         initViewModel()
     }
 
-
     private fun initRecyclerView() {
         recyclerView.hasFixedSize()
         val layoutManager = LinearLayoutManager(activity!!)
         recyclerView.layoutManager = layoutManager
         notesAdapter = AlarmsRecyclerViewAdapter(notesData, activity!!)
-        recyclerView?.adapter = notesAdapter
+        recyclerView.adapter = notesAdapter
     }
 
     private fun initViewModel() {
+        /*Observe for changes in notesData*/
         val alarmsObserver: Observer<List<AlarmEntity>> = Observer {
             notesData.clear()
             notesData.addAll(it!!)
             notesAdapter?.notifyDataSetChanged()
         }
-
         alarmsViewModel = ViewModelProviders.of(activity!!)
                 .get(AlarmsViewModel::class.java)
         alarmsViewModel.alarms.observe(this, alarmsObserver)
-
-
     }
 
+    /*Sample Room Data for testing*/
     private fun addSampleData() {
-        Log.d(TAG, "addSampleData: klikniete")
         alarmsViewModel.addSampleData()
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy: insite onDestroy")
-    }
-
-
 }

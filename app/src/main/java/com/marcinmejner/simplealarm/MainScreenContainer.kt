@@ -22,7 +22,6 @@ class MainScreenContainer : AppCompatActivity(), BottomNavigationView.OnNavigati
         initBottomNavView()
         initFragments()
         displayFragment(alarmFragment)
-
     }
 
     private fun initFragments() {
