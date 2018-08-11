@@ -14,4 +14,8 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
     init {
         alarms = repository.alarms
     }
+
+    fun addNewAlarm(newAlarm: AlarmEntity){
+        repository.addNewAlarm(newAlarm)
+    }
 }

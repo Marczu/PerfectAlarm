@@ -21,10 +21,6 @@ class AlarmsViewModel(application: Application) : AndroidViewModel(application) 
         repository.addSampleData()
     }
 
-    fun addNewAlarm(newAlarm: AlarmEntity){
-        repository.addNewAlarm(newAlarm)
-    }
-
     fun deleteAllAlarms(){
         repository.deleteAllAlarms()
     }
