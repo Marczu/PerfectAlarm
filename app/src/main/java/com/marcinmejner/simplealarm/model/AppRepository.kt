@@ -62,4 +62,10 @@ class AppRepository private constructor(context: Context) {
             db.alarmeDao().deleteAll()
         }
     }
+
+    fun addNewAlarm(newAlarm: AlarmEntity) {
+        executor.execute {
+            db.alarmeDao().insertAlarm(newAlarm)
+        }
+    }
 }

@@ -30,7 +30,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         holder.alarmTime.text = "${alarmsList[position]?.alarmHours}:${alarmsList[position]?.alarmMinutes}"
         holder.alarmSnoozeTime.text = alarmsList[position]?.snoozeMinutes.toString()
 
-        if(isAlarmTurnedOn(alarmsList[position].isAlarmEnabled)){
+        if(alarmsList[position].isAlarmEnabled){
             holder.alarmSwitch.isChecked = true
         }
 
@@ -50,8 +50,6 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         val snoozeTv = view.snooze_tv
         val deleteSingleAlarm = view.alarm_item_delete_alarm
     }
-
-    fun isAlarmTurnedOn(isOn: Boolean) : Boolean = isOn
 
     /*Check if snooze is enabled, if no then disable snooze view*/
     fun isSnoozeEnabled(holder: ViewHolder, position: Int){
