@@ -36,6 +36,7 @@ class AlarmsFragment : Fragment() {
 
         init(view)
         return view
+
     }
 
     private fun init(view: View) {
@@ -57,13 +58,12 @@ class AlarmsFragment : Fragment() {
         val alarmsObserver: Observer<List<AlarmEntity>> = Observer {
             notesData.clear()
             notesData.addAll(it!!)
+            Log.d(TAG, "initViewModel: alarm count: ${notesData.size}")
             notesAdapter?.notifyDataSetChanged()
         }
         alarmsViewModel = ViewModelProviders.of(activity!!)
                 .get(AlarmsViewModel::class.java)
         alarmsViewModel.alarms.observe(this, alarmsObserver)
-
-
     }
 
     /*Sample Room Data for testing*/
@@ -75,4 +75,5 @@ class AlarmsFragment : Fragment() {
     private fun deleteAllAlarms(){
         alarmsViewModel.deleteAllAlarms()
     }
+
 }
