@@ -49,8 +49,7 @@ class AlarmsFragment : Fragment() {
         recyclerView.hasFixedSize()
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
-        notesAdapter = AlarmsRecyclerViewAdapter(notesData, activity!!)
-        recyclerView.adapter = notesAdapter
+
     }
 
     private fun initViewModel() {
@@ -61,9 +60,13 @@ class AlarmsFragment : Fragment() {
             Log.d(TAG, "initViewModel: alarm count: ${notesData.size}")
             notesAdapter?.notifyDataSetChanged()
         }
+
         alarmsViewModel = ViewModelProviders.of(activity!!)
                 .get(AlarmsViewModel::class.java)
         alarmsViewModel.alarms.observe(this, alarmsObserver)
+
+        notesAdapter = AlarmsRecyclerViewAdapter(notesData, activity!!, alarmsViewModel)
+        recyclerView.adapter = notesAdapter
     }
 
     /*Sample Room Data for testing*/

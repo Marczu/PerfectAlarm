@@ -25,4 +25,8 @@ class AlarmsViewModel(application: Application) : AndroidViewModel(application) 
         repository.deleteAllAlarms()
     }
 
+    fun deleteSingleAlarmById(id: Int){
+        repository.deleteSingleAlarmById(id)
+    }
+
 }

@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.alarm.AlarmsViewModel
 import com.marcinmejner.simplealarm.model.AlarmEntity
-import com.marcinmejner.simplealarm.model.AppRepository
 import kotlinx.android.synthetic.main.alarm_list_item.view.*
 
 
-class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val context: Context) : RecyclerView.Adapter<AlarmsRecyclerViewAdapter.ViewHolder>() {
+class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val context: Context, val alarmsViewModel: AlarmsViewModel) : RecyclerView.Adapter<AlarmsRecyclerViewAdapter.ViewHolder>() {
     private val TAG = "AlarmsRecyclerViewAdapt"
 
 
@@ -63,7 +63,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
 
     fun deleteSingleAlarm(holder: ViewHolder, position: Int){
         holder.deleteSingleAlarm.setOnClickListener {
-            AppRepository.getInstance(context).deleteSingleAlarmById(alarmsList[position].id)
+            alarmsViewModel.deleteSingleAlarmById(alarmsList[position].id)
         }
     }
 }
