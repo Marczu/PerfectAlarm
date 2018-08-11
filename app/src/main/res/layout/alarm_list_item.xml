@@ -44,16 +44,36 @@
             android:layout_centerInParent="true"
             />
 
-        <RelativeLayout
-            android:id="@+id/relLayout1"
-            android:layout_below="@+id/alarm_item_title"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/snooze_tv"
+            android:textSize="12sp"
+            android:layout_toLeftOf="@+id/alarm_snooze_time_tv"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:textColor="@color/grey"
+
+            android:text="Drzemka: "/>
+
+        <!--Snooze time in minutes-->
+        <TextView
+            android:id="@+id/alarm_snooze_time_tv"
+            android:textSize="15sp"
+            android:layout_toLeftOf="@+id/alarm_item_switch"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:text="10 min"/>
+
+
 
             <!--Alarm Time-->
             <TextView
                 android:id="@+id/alarm_item_time"
+                android:layout_below="@+id/alarm_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -63,38 +83,10 @@
                 android:textStyle="bold" />
 
 
-
-            <TextView
-                android:id="@+id/snooze_tv"
-                android:textSize="12sp"
-                android:layout_toRightOf="@+id/alarm_item_time"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:layout_marginLeft="25dp"
-                android:text="Drzemka: "/>
-
-            <!--Snooze time in minutes-->
-            <TextView
-                android:id="@+id/alarm_snooze_time_tv"
-                android:textSize="15sp"
-                android:layout_toRightOf="@+id/snooze_tv"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                tools:text="10 min"/>
-
-
-
-        </RelativeLayout>
-
         <ImageView
             android:id="@+id/iv_days_of_week"
             android:src="@drawable/ic_repeat"
-            android:layout_below="@+id/relLayout1"
+            android:layout_below="@+id/alarm_item_time"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
             android:layout_width="20dp"
@@ -105,7 +97,7 @@
             android:id="@+id/alarm_item_tv_days_of_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/relLayout1"
+            android:layout_below="@+id/alarm_item_time"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_days_of_week"
             android:textColor="@color/white"

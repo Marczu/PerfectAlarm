@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.adapters.AlarmsRecyclerViewAdapter
 import com.marcinmejner.simplealarm.model.AlarmEntity
+import kotlinx.android.synthetic.main.fragment_alarms.*
+import kotlinx.android.synthetic.main.fragment_alarms.view.*
 
 class AlarmsFragment : Fragment() {
     private val TAG = "AlarmsFragment"
@@ -30,19 +32,21 @@ class AlarmsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_alarms, container, false)
         Log.d(TAG, "onCreateView: AlarmsFragment started ")
 
-        recyclerView = view.findViewById(R.id.alarms_recycler_view)
-        init()
+
+
+        init(view)
         return view
     }
 
-    private fun init() {
-        initRecyclerView()
+    private fun init(view: View) {
+        initRecyclerView(view)
         initViewModel()
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(view: View) {
+        recyclerView = view.alarms_recycler_view
         recyclerView.hasFixedSize()
-        val layoutManager = LinearLayoutManager(activity!!)
+        val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         notesAdapter = AlarmsRecyclerViewAdapter(notesData, activity!!)
         recyclerView.adapter = notesAdapter
@@ -58,10 +62,17 @@ class AlarmsFragment : Fragment() {
         alarmsViewModel = ViewModelProviders.of(activity!!)
                 .get(AlarmsViewModel::class.java)
         alarmsViewModel.alarms.observe(this, alarmsObserver)
+
+
     }
 
     /*Sample Room Data for testing*/
     private fun addSampleData() {
         alarmsViewModel.addSampleData()
+    }
+
+    /*Delete all alarms from Room databse*/
+    private fun deleteAllAlarms(){
+        alarmsViewModel.deleteAllAlarms()
     }
 }
