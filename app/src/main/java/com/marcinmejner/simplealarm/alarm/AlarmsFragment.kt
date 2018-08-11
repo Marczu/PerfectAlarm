@@ -2,6 +2,7 @@ package com.marcinmejner.simplealarm.alarm
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -42,6 +43,7 @@ class AlarmsFragment : Fragment() {
     private fun init(view: View) {
         initRecyclerView(view)
         initViewModel()
+        createNewAlarm(view)
     }
 
     private fun initRecyclerView(view: View) {
@@ -67,6 +69,15 @@ class AlarmsFragment : Fragment() {
 
         notesAdapter = AlarmsRecyclerViewAdapter(notesData, activity!!, alarmsViewModel)
         recyclerView.adapter = notesAdapter
+    }
+
+    /*Move to new alarm creator or editor*/
+    private fun createNewAlarm(view: View){
+        view.add_new_alarm_btn.setOnClickListener {
+            Intent(activity, AlarmEditor::class.java).apply {
+                startActivity(this)
+            }
+        }
     }
 
     /*Sample Room Data for testing*/
