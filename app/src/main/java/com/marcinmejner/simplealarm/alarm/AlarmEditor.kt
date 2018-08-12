@@ -57,6 +57,7 @@ class AlarmEditor : AppCompatActivity() {
         hourPicker.displayedValues = displaydHourValues
         hourPicker.minValue = 0
         hourPicker.maxValue = 23
+        hourPicker.value = 7
 
         minutePicker = numberMinutePicker
         minutePicker.displayedValues = displayMinutesdValues
