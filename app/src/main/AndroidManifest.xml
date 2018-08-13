@@ -21,7 +21,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".alarm.AlarmEditor"></activity>
+        <activity android:name=".alarm.AlarmEditor"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

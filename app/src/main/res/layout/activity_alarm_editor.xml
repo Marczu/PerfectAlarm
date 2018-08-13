@@ -20,6 +20,7 @@
             android:layout_centerVertical="true"
             android:background="@color/white"/>
 
+        <!--Save and cancel buttons-->
         <LinearLayout
             android:id="@+id/saveOrCancelLinLayout"
             android:orientation="horizontal"
@@ -32,6 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Zapisz"
+                android:drawableStart="@drawable/ic_save"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:textColor="@color/white"
                 android:background="@drawable/light_white_noborders_button"/>
 
@@ -40,7 +44,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="aNULUJ"
+                android:drawableStart="@drawable/ic_cancel"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="ANULUJ"
                 android:textColor="@color/white"
                 android:background="@drawable/light_white_noborders_button"/>
 
@@ -95,6 +102,7 @@
                         android:layout_width="200dp"
                         android:theme="@style/AppTheme.Picker"
                         android:layout_height="200dp"
+                        android:descendantFocusability="blocksDescendants"
                         android:layout_marginRight="100dp"
                         android:layout_marginLeft="10dp"
                         >
@@ -104,6 +112,7 @@
 
                 <!--Dayos od week toggle buttons-->
                 <LinearLayout
+                    android:id="@+id/days_of_week_lin_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -114,8 +123,8 @@
                         android:id="@+id/poniedzialek_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:checked="true"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
@@ -130,8 +139,8 @@
                         android:id="@+id/wtorek_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:checked="true"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
@@ -146,8 +155,8 @@
                         android:id="@+id/sroda_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:checked="true"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
@@ -162,8 +171,8 @@
                         android:id="@+id/czwartek_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:checked="true"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
@@ -178,8 +187,8 @@
                         android:id="@+id/piatek_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:checked="true"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
@@ -194,8 +203,8 @@
                         android:id="@+id/sobota_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
                         android:layout_centerHorizontal="true"
@@ -209,8 +218,8 @@
                         android:id="@+id/niedziela_toggle"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/toggle_selector"
                         android:layout_centerHorizontal="true"
@@ -220,8 +229,99 @@
                         android:textOn="N"
                         android:textOff="N" />
 
-
                 </LinearLayout>
+
+                <!--Alarm Name-->
+                <TextView
+                    android:id="@+id/edit_alarm_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:text="Nazwa alarmu:"
+                    android:layout_below="@+id/days_of_week_lin_layout"/>
+
+                <!--Alarm Name Edit-->
+                <EditText
+                    android:id="@+id/edit_alarm_title_et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:hint="Wprowadź nazwe dla alarmu"
+                    android:textColorHint="@color/grey"
+                    android:layout_below="@+id/edit_alarm_title_tv"/>
+
+                <!--Snooze minutes layout-->
+                <RelativeLayout
+                    android:id="@+id/edit_snooze_minutes_relLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_alarm_title_et">
+
+
+                    <TextView
+                        android:id="@+id/edit_snooze__tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:text="Czas drzemki:"
+                        />
+
+                    <!--Snooze Minutes-->
+                    <TextView
+                        android:id="@+id/edit_snooze_minutes_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/grey"
+                        android:textSize="15sp"
+                        android:text="10 minut"
+                        android:layout_below="@+id/edit_snooze__tv"/>
+
+                </RelativeLayout>
+
+                <!--Ringtone chooser-->
+                <RelativeLayout
+                    android:id="@+id/edit_ringtone_relLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_below="@+id/edit_snooze_minutes_relLayout">
+
+
+                    <TextView
+                        android:id="@+id/edit_ringtone__tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:text="Wybierz dzwonek:"
+                        />
+
+                    <TextView
+                        android:id="@+id/edit_ringtone_set_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/grey"
+                        android:textSize="15sp"
+                        android:text="Kliknij by wybrać dzwonek"
+                        android:layout_below="@+id/edit_ringtone__tv"/>
+
+                </RelativeLayout>
+
+
 
             </RelativeLayout>
 
