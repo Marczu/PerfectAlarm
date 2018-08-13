@@ -3,8 +3,10 @@ package com.marcinmejner.simplealarm.alarm
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.model.AlarmEntity
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
 import java.util.*
 
@@ -29,6 +31,7 @@ class AlarmEditor : AppCompatActivity() {
         initViewModel()
         saveNewAlarm()
         initTimePicker()
+        cancel()
     }
 
     private fun initTimePicker() {
@@ -70,9 +73,33 @@ class AlarmEditor : AppCompatActivity() {
                 .get(AlarmEditorViewModel::class.java)
     }
 
+    /*Taking data from widgets and saveing it in databse*/
     private fun saveNewAlarm() {
+        edit_save_btn.setOnClickListener {
+
+            /*pick hour and minutes*/
+            val hourPicked = hourPicker.value.toString()
+            val minutesPicked = minutePicker.value.toString()
+            Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
+
+            val alarmName = edit_alarm_title_et.text.toString()
+            Log.d(TAG, "saveNewAlarm: $alarmName")
 
 
+
+            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName)
+
+            editorViewModel.addNewAlarm(newAlarm)
+
+            finish()
+        }
+
+    }
+
+    private fun cancel(){
+        edit_cancel_btn.setOnClickListener {
+            finish()
+        }
     }
 
 }
