@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
+import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
 import java.util.*
 
@@ -39,6 +40,11 @@ class AlarmEditor : AppCompatActivity() {
     private fun initViewModel() {
         editorViewModel = ViewModelProviders.of(this)
                 .get(AlarmEditorViewModel::class.java)
+
+        editorViewModel.snoozeTime.observe(this, android.arch.lifecycle.Observer {
+            Log.d(TAG, "initViewModel: z obserwera : ${it!!}")
+            edit_snooze_minutes_et.text = "$it minut"
+        })
     }
 
     /*Taking data from widgets and saveing it in databse*/
@@ -48,20 +54,18 @@ class AlarmEditor : AppCompatActivity() {
             /*pick hour and minutes*/
             val hourPicked = hourPicker.value.toString()
             val minutesPicked = minutePicker.value.toString()
+            val snoozeMinutes = editorViewModel.snoozeTime.value
             Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
 
             val alarmName = edit_alarm_title_et.text.toString()
             Log.d(TAG, "saveNewAlarm: $alarmName")
 
-
-
-            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName)
-
+            /*Adding new alarm to databse*/
+            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName, snoozeMinutes = snoozeMinutes!!)
             editorViewModel.addNewAlarm(newAlarm)
 
             finish()
         }
-
     }
 
     private fun initTimePicker() {
@@ -121,5 +125,4 @@ class AlarmEditor : AppCompatActivity() {
             finish()
         }
     }
-
 }

@@ -14,6 +14,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
     var snoozeTime: MutableLiveData<Int> = MutableLiveData()
 
     init {
+        snoozeTime.value = 10
         alarms = repository.alarms
     }
 

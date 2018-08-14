@@ -1,6 +1,7 @@
 package com.marcinmejner.simplealarm.alarm
 
 import android.app.Dialog
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.util.Log
@@ -11,13 +12,14 @@ import android.view.Window
 import android.widget.NumberPicker
 import android.widget.TextView
 import com.marcinmejner.simplealarm.R
-import android.view.Window.FEATURE_NO_TITLE
-import android.support.constraint.ConstraintLayout
 import kotlinx.android.synthetic.main.fragment_dialog_snooze_time_picker.view.*
 
 
 class AlarmSnoozeTimePickerDialogFragment : DialogFragment() {
     private val TAG = "AlarmSnoozeTimePickerDi"
+
+    //vars
+    lateinit var snoozeTimeViewModel: AlarmEditorViewModel
 
     //widgets
     lateinit var picker: NumberPicker
@@ -30,6 +32,7 @@ class AlarmSnoozeTimePickerDialogFragment : DialogFragment() {
         cancelDialog = view.cancelDialog
         saveDialog = view.save_dialog
 
+        initViewModel()
         initNumberPicker()
 
         return view
@@ -50,6 +53,12 @@ class AlarmSnoozeTimePickerDialogFragment : DialogFragment() {
         super.onResume()
     }
 
+    private fun initViewModel() {
+        snoozeTimeViewModel = ViewModelProviders.of(activity!!)
+                .get(AlarmEditorViewModel::class.java)
+    }
+
+    /*Init Number picked, then saving value to snoozeTime viewModel*/
     fun initNumberPicker() {
         picker.minValue = 0
         picker.maxValue = 100
@@ -62,6 +71,8 @@ class AlarmSnoozeTimePickerDialogFragment : DialogFragment() {
 
         saveDialog.setOnClickListener {
             val snoozeMinutePicked = picker.value.toString()
+            snoozeTimeViewModel.snoozeTime.value = snoozeMinutePicked.toInt()
+            Log.d(TAG, "initNumberPicker: viewModel ${snoozeTimeViewModel.snoozeTime.value.toString()}")
             Log.d(TAG, "initNumberPicker: picked number is: $snoozeMinutePicked ")
 
             AlarmSnoozeTimePickerDialogFragment@ this.dismiss()
