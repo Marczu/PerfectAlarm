@@ -13,24 +13,21 @@ import android.widget.TextView
 import com.marcinmejner.simplealarm.R
 import android.view.Window.FEATURE_NO_TITLE
 import android.support.constraint.ConstraintLayout
+import kotlinx.android.synthetic.main.fragment_dialog_rington_chooser.view.*
 import kotlinx.android.synthetic.main.fragment_dialog_snooze_time_picker.view.*
 
 
-class AlarmSnoozeTimePickerDialogFragment : DialogFragment() {
+class AlarmRingtoneChooserDialogFragment : DialogFragment() {
     private val TAG = "AlarmSnoozeTimePickerDi"
 
     //widgets
-    lateinit var picker: NumberPicker
     lateinit var cancelDialog: TextView
     lateinit var saveDialog: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_dialog_snooze_time_picker, container, false)
-        picker = view.numberPicker
-        cancelDialog = view.cancelDialog
-        saveDialog = view.save_dialog
-
-        initNumberPicker()
+        val view = inflater.inflate(R.layout.fragment_dialog_rington_chooser, container, false)
+        cancelDialog = view.ringtone_cancel_btn
+        saveDialog = view.ringtone_save_btn
 
         return view
     }
@@ -43,30 +40,12 @@ class AlarmSnoozeTimePickerDialogFragment : DialogFragment() {
 
     /*Set size od dialog fragment to 70% width and 50% height*/
     override fun onResume() {
-        val width = (resources.displayMetrics.widthPixels * 0.7).toInt()
-        val height = (resources.displayMetrics.heightPixels * 0.5).toInt()
+        val width = (resources.displayMetrics.widthPixels * 0.9).toInt()
+        val height = (resources.displayMetrics.heightPixels)
         dialog.window!!.setLayout(width, height)
 
         super.onResume()
     }
 
-    fun initNumberPicker() {
-        picker.minValue = 0
-        picker.maxValue = 100
-        picker.value = 10
-        picker.wrapSelectorWheel = false
-
-        cancelDialog.setOnClickListener {
-            AlarmSnoozeTimePickerDialogFragment@ this.dismiss()
-        }
-
-        saveDialog.setOnClickListener {
-            val snoozeMinutePicked = picker.value.toString()
-            Log.d(TAG, "initNumberPicker: picked number is: $snoozeMinutePicked ")
-
-            AlarmSnoozeTimePickerDialogFragment@ this.dismiss()
-        }
-
-    }
 
 }

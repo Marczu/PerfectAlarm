@@ -35,10 +35,11 @@
 
         <TextView
             android:id="@+id/cancelDialog"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anuluj"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_below="@id/numberPicker"
 
             android:textColor="@color/colorAccent"/>
@@ -46,10 +47,11 @@
         <TextView
             android:layout_alignParentRight="true"
             android:id="@+id/save_dialog"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Zapisz"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_below="@id/numberPicker"
 
             android:textColor="@color/colorAccent"/>

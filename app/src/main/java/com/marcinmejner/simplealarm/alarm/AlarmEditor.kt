@@ -32,6 +32,7 @@ class AlarmEditor : AppCompatActivity() {
         saveNewAlarm()
         initTimePicker()
         setSnoozeTimePicker()
+        setRingtoneChooser()
         cancel()
     }
 
@@ -103,6 +104,15 @@ class AlarmEditor : AppCompatActivity() {
             val fm = supportFragmentManager
 
             snnozeDialog.show(fm, getString(R.string.select_snooze_time))
+        }
+    }
+
+    fun setRingtoneChooser(){
+        edit_ringtone_relLayout.setOnClickListener {
+            val ringtoneDialog = AlarmRingtoneChooserDialogFragment()
+            val fm = supportFragmentManager
+
+            ringtoneDialog.show(fm, getString(R.string.select_ringhtone))
         }
     }
 
