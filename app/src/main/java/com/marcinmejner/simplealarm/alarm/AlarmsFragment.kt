@@ -33,11 +33,8 @@ class AlarmsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_alarms, container, false)
         Log.d(TAG, "onCreateView: AlarmsFragment started ")
 
-
-
         init(view)
         return view
-
     }
 
     private fun init(view: View) {
@@ -81,9 +78,9 @@ class AlarmsFragment : Fragment() {
     }
 
     /*Sample Room Data for testing*/
-    private fun addSampleData() {
-        alarmsViewModel.addSampleData()
-    }
+//    private fun addSampleData() {
+//        alarmsViewModel.addSampleData()
+//    }
 
     /*Delete all alarms from Room databse*/
     private fun deleteAllAlarms(){

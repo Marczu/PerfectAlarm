@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="170dp"
+    android:layout_height="300dp"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:padding="10dp"
+    android:background="@drawable/background"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Czas Drzemki"
+            android:layout_centerHorizontal="true"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="6dp"/>
+
+        <NumberPicker
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/title"
+            android:id="@+id/numberPicker"
+            android:layout_width="150dp"
+            android:theme="@style/AppTheme.Picker"
+            android:layout_height="wrap_content"
+            >
+        </NumberPicker>
+
+        <TextView
+            android:id="@+id/cancelDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anuluj"
+            android:textSize="18sp"
+            android:layout_below="@id/numberPicker"
+
+            android:textColor="@color/colorAccent"/>
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/save_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zapisz"
+            android:textSize="18sp"
+            android:layout_below="@id/numberPicker"
+
+            android:textColor="@color/colorAccent"/>
+
+
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>

@@ -31,7 +31,36 @@ class AlarmEditor : AppCompatActivity() {
         initViewModel()
         saveNewAlarm()
         initTimePicker()
+        setSnoozeTimePicker()
         cancel()
+    }
+
+    private fun initViewModel() {
+        editorViewModel = ViewModelProviders.of(this)
+                .get(AlarmEditorViewModel::class.java)
+    }
+
+    /*Taking data from widgets and saveing it in databse*/
+    private fun saveNewAlarm() {
+        edit_save_btn.setOnClickListener {
+
+            /*pick hour and minutes*/
+            val hourPicked = hourPicker.value.toString()
+            val minutesPicked = minutePicker.value.toString()
+            Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
+
+            val alarmName = edit_alarm_title_et.text.toString()
+            Log.d(TAG, "saveNewAlarm: $alarmName")
+
+
+
+            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName)
+
+            editorViewModel.addNewAlarm(newAlarm)
+
+            finish()
+        }
+
     }
 
     private fun initTimePicker() {
@@ -68,32 +97,13 @@ class AlarmEditor : AppCompatActivity() {
         minutePicker.maxValue = 60
     }
 
-    private fun initViewModel() {
-        editorViewModel = ViewModelProviders.of(this)
-                .get(AlarmEditorViewModel::class.java)
-    }
+    fun setSnoozeTimePicker(){
+        edit_snooze_minutes_relLayout.setOnClickListener {
+            val snnozeDialog = AlarmSnoozeTimePickerDialogFragment()
+            val fm = supportFragmentManager
 
-    /*Taking data from widgets and saveing it in databse*/
-    private fun saveNewAlarm() {
-        edit_save_btn.setOnClickListener {
-
-            /*pick hour and minutes*/
-            val hourPicked = hourPicker.value.toString()
-            val minutesPicked = minutePicker.value.toString()
-            Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
-
-            val alarmName = edit_alarm_title_et.text.toString()
-            Log.d(TAG, "saveNewAlarm: $alarmName")
-
-
-
-            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName)
-
-            editorViewModel.addNewAlarm(newAlarm)
-
-            finish()
+            snnozeDialog.show(fm, getString(R.string.select_snooze_time))
         }
-
     }
 
     private fun cancel(){

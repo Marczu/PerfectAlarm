@@ -27,7 +27,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.alarmTitle.text = alarmsList[position]?.name
-        holder.alarmTime.text = "${alarmsList[position]?.alarmHours}:${alarmsList[position]?.alarmMinutes}"
+        holder.alarmTime.text = timeStringFormatting(position)
         holder.alarmSnoozeTime.text = alarmsList[position]?.snoozeMinutes.toString()
 
         if(alarmsList[position].isAlarmEnabled){
@@ -63,5 +63,25 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         holder.deleteSingleAlarm.setOnClickListener {
             alarmsViewModel.deleteSingleAlarmById(alarmsList[position].id)
         }
+    }
+
+    /*Check if minutes or hours are <10 and add 0*/
+    fun timeStringFormatting(position: Int): String{
+        val hours = alarmsList[position].alarmHours?.toInt()
+        val minutes = alarmsList[position].alarmMinutes?.toInt()
+
+        val hoursAfter = if(alarmsList[position].alarmHours?.toInt()!! < 10){
+            "0$hours"
+        }else{
+            "$hours"
+        }
+
+        val minutesAfter = if(alarmsList[position].alarmMinutes?.toInt()!! < 10){
+            "0$minutes"
+        }else{
+            "$minutes"
+        }
+
+        return "$hoursAfter:$minutesAfter"
     }
 }
