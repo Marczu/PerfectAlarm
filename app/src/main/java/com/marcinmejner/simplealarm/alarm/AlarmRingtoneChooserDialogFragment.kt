@@ -1,6 +1,7 @@
 package com.marcinmejner.simplealarm.alarm
 
 import android.app.Dialog
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.util.Log
@@ -20,6 +21,9 @@ import kotlinx.android.synthetic.main.fragment_dialog_snooze_time_picker.view.*
 class AlarmRingtoneChooserDialogFragment : DialogFragment() {
     private val TAG = "AlarmSnoozeTimePickerDi"
 
+    //vars
+    lateinit var ringtoneChooserViewModel: AlarmEditorViewModel
+
     //widgets
     lateinit var cancelDialog: TextView
     lateinit var saveDialog: TextView
@@ -29,6 +33,8 @@ class AlarmRingtoneChooserDialogFragment : DialogFragment() {
         cancelDialog = view.ringtone_cancel_btn
         saveDialog = view.ringtone_save_btn
 
+        initViewModel()
+
         return view
     }
 
@@ -36,6 +42,11 @@ class AlarmRingtoneChooserDialogFragment : DialogFragment() {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
         return dialog
+    }
+
+    private fun initViewModel() {
+        ringtoneChooserViewModel = ViewModelProviders.of(activity!!)
+                .get(AlarmEditorViewModel::class.java)
     }
 
     /*Set size od dialog fragment to 70% width and 50% height*/

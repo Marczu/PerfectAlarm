@@ -1,15 +1,13 @@
 package com.marcinmejner.simplealarm.alarm
 
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
-import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
-import java.util.*
 
 class AlarmEditor : AppCompatActivity() {
     private val TAG = "AlarmEditor"
@@ -51,17 +49,17 @@ class AlarmEditor : AppCompatActivity() {
     private fun saveNewAlarm() {
         edit_save_btn.setOnClickListener {
 
-            /*pick hour and minutes*/
             val hourPicked = hourPicker.value.toString()
             val minutesPicked = minutePicker.value.toString()
             val snoozeMinutes = editorViewModel.snoozeTime.value
+            val ringtone = editorViewModel.ringtone.value
             Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
 
-            val alarmName = edit_alarm_title_et.text.toString()
+            val alarmName = editorViewModel.isTitleEmpty(edit_alarm_title_et.text.toString())
             Log.d(TAG, "saveNewAlarm: $alarmName")
 
             /*Adding new alarm to databse*/
-            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName, snoozeMinutes = snoozeMinutes!!)
+            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!)
             editorViewModel.addNewAlarm(newAlarm)
 
             finish()
@@ -102,6 +100,7 @@ class AlarmEditor : AppCompatActivity() {
         minutePicker.maxValue = 60
     }
 
+    /*show snoozeTimePicker fragment*/
     fun setSnoozeTimePicker(){
         edit_snooze_minutes_relLayout.setOnClickListener {
             val snnozeDialog = AlarmSnoozeTimePickerDialogFragment()
@@ -111,6 +110,7 @@ class AlarmEditor : AppCompatActivity() {
         }
     }
 
+    /*show ringToneChooser fragment fragment*/
     fun setRingtoneChooser(){
         edit_ringtone_relLayout.setOnClickListener {
             val ringtoneDialog = AlarmRingtoneChooserDialogFragment()

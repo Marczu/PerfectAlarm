@@ -254,6 +254,7 @@
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
                     android:textSize="15sp"
+                    android:text=""
                     android:hint="Wprowadź nazwe dla alarmu"
                     android:textColorHint="@color/grey"
                     android:layout_below="@+id/edit_alarm_title_tv"/>
