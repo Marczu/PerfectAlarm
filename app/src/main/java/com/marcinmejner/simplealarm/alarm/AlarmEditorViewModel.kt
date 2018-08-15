@@ -14,6 +14,14 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
     var snoozeTime: MutableLiveData<Int> = MutableLiveData()
     var ringtone: MutableLiveData<String> = MutableLiveData()
 
+    var mondayToggle: Boolean = true
+    var tuesdayToggle: Boolean = true
+    var wednesdayToggle: Boolean = true
+    var thursdayToggle: Boolean = true
+    var fridayToggle: Boolean = true
+    var saturdayToggle: Boolean = false
+    var sundayToggle: Boolean = false
+
     init {
         snoozeTime.value = 10
         ringtone.value = "budzik"
@@ -29,5 +37,12 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
 
     fun addNewAlarm(newAlarm: AlarmEntity){
         repository.addNewAlarm(newAlarm)
+    }
+
+    fun setDaysOfWeekText() : String{
+        if(mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
+                && saturdayToggle && sundayToggle) return "Codziennie"
+
+        else return "coś"
     }
 }

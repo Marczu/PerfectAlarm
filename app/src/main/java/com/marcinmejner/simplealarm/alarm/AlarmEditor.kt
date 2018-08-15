@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
+import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
 
 class AlarmEditor : AppCompatActivity() {
@@ -54,13 +55,18 @@ class AlarmEditor : AppCompatActivity() {
             val minutesPicked = minutePicker.value.toString()
             val snoozeMinutes = editorViewModel.snoozeTime.value
             val ringtone = editorViewModel.ringtone.value
+            val daysOfWeekText = editorViewModel.setDaysOfWeekText()
             Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
 
             val alarmName = editorViewModel.isTitleEmpty(edit_alarm_title_et.text.toString())
             Log.d(TAG, "saveNewAlarm: $alarmName")
 
+
+
             /*Adding new alarm to databse*/
-            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked, name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!)
+            val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked,
+                    name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!,
+                    daysOfWeek = daysOfWeekText)
             editorViewModel.addNewAlarm(newAlarm)
 
             finish()
@@ -122,53 +128,42 @@ class AlarmEditor : AppCompatActivity() {
     }
 
     private fun daysOfWeekChooser() {
-        var mondayToggle: Boolean
-        var tuesdayToggle: Boolean
-        var wednesdayToggle: Boolean
-        var thursdayToggle: Boolean
-        var fridayToggle: Boolean
-        var saturdayToggle: Boolean
-        var sundayToggle: Boolean
+
         poniedzialek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            mondayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser: monday $mondayToggle")
+            editorViewModel.mondayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser: monday ${ editorViewModel.mondayToggle}")
         }
 
         wtorek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            tuesdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser: tuesday $tuesdayToggle")
+            editorViewModel.tuesdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser: tuesday ${ editorViewModel.tuesdayToggle}")
         }
 
         sroda_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            wednesdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  wednesday $wednesdayToggle")
+            editorViewModel.wednesdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  wednesday ${ editorViewModel.wednesdayToggle}")
         }
 
         czwartek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            thursdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  thursday $thursdayToggle")
+            editorViewModel.thursdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  thursday ${ editorViewModel.thursdayToggle}")
         }
 
         piatek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            fridayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser: friday $fridayToggle")
+            editorViewModel.fridayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser: friday ${ editorViewModel.fridayToggle}")
         }
 
         sobota_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            saturdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  saturday $saturdayToggle")
+            editorViewModel.saturdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  saturday ${ editorViewModel.saturdayToggle}")
         }
 
         niedziela_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            sundayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  sunday $sundayToggle")
+            editorViewModel.sundayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  sunday ${ editorViewModel.sundayToggle}")
         }
-//        if(wtorek_toggle.isChecked) mondayToggle = true
-//        if(poniedzialek_toggle.isChecked) mondayToggle = true
-//        if(poniedzialek_toggle.isChecked) mondayToggle = true
-//        if(poniedzialek_toggle.isChecked) mondayToggle = true
-//        if(poniedzialek_toggle.isChecked) mondayToggle = true
-//        if(poniedzialek_toggle.isChecked) mondayToggle = true
+
     }
 
     private fun cancel(){

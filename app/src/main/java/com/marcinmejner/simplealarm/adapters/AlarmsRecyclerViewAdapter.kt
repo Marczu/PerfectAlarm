@@ -29,6 +29,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         holder.alarmTitle.text = alarmsList[position]?.name
         holder.alarmTime.text = timeStringFormatting(position)
         holder.alarmSnoozeTime.text = alarmsList[position]?.snoozeMinutes.toString()
+        holder.daysOfWeek.text = alarmsList[position]?.daysOfWeek.toString()
 
         if(alarmsList[position].isAlarmEnabled){
             holder.alarmSwitch.isChecked = true
@@ -49,6 +50,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         val alarmTitle = view.alarm_item_title
         val snoozeTv = view.snooze_tv
         val deleteSingleAlarm = view.alarm_item_delete_alarm
+        val daysOfWeek = view.alarm_item_tv_days_of_week
     }
 
     /*Check if snooze is enabled, if no then disable snooze view*/
