@@ -39,9 +39,99 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         repository.addNewAlarm(newAlarm)
     }
 
+    /*Check what days of week are true, when set text do display*/
     fun setDaysOfWeekText() : String{
         if(mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
                 && saturdayToggle && sundayToggle) return "Codziennie"
+
+        /*Monday - xxx */
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
+                && saturdayToggle) && !sundayToggle) return "PONIEDZIAŁEK-SOBOTA"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle)
+                        && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK-PIĄTEK"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle) && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK-CZWARTEK"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle) && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK-ŚRODA"
+
+        else if((mondayToggle && tuesdayToggle) && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK-WTOREK"
+
+        else if((mondayToggle) && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK"
+
+        /*Tuesday - xxx*/
+        else if((!mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
+                        && saturdayToggle && sundayToggle)) return "WTOREK-NIEDZIELA"
+
+        else if(!mondayToggle && (tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "WTOREK-SOBOTA"
+
+        else if(!mondayToggle && (tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "WTOREK-PIĄTEK"
+
+        else if(!mondayToggle && (tuesdayToggle && wednesdayToggle && thursdayToggle) && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "WTOREK-CZWARTEK"
+
+        else if(!mondayToggle && (tuesdayToggle && wednesdayToggle) && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "WTOREK-ŚRODA"
+
+        else if(!mondayToggle && (tuesdayToggle) && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "WTOREK"
+
+        /*Wednesday - xxx */
+        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle
+                        && saturdayToggle && sundayToggle)) return "ŚRODA-NIEDZIELA"
+
+        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "ŚRODA-SOBOTA"
+
+        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "ŚRODA-PIĄTEK"
+
+        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle && thursdayToggle) && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "ŚRODA-CZWARTEK"
+
+        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle) && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "ŚRODA"
+
+        /*Thursday - xxx */
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle && fridayToggle
+                        && saturdayToggle && sundayToggle)) return "CZWARTEK-NIEDZIELA"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle && fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "CZWARTEK-SOBOTA"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle && fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "CZWARTEK-PIĄTEK"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle) && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "CZWARTEK"
+
+        /*Friday - xxx*/
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle
+                        && saturdayToggle && sundayToggle)) return "PIĄTEK-NIEDZIELA"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "PIĄTEK-SOBOTA"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "PIĄTEK"
+
+        /*Saturday - xxx*/
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                        && (saturdayToggle && sundayToggle)) return "WEEKEND"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                        && (saturdayToggle) && !sundayToggle) return "SOBOTA"
+
+        /*Sunday*/
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && (sundayToggle)) return "NIEDZIELA"
+
 
         else return "coś"
     }
