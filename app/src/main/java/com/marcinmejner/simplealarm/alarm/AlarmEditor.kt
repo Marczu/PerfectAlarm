@@ -32,6 +32,7 @@ class AlarmEditor : AppCompatActivity() {
         initTimePicker()
         setSnoozeTimePicker()
         setRingtoneChooser()
+        daysOfWeekChooser()
         cancel()
     }
 
@@ -101,7 +102,7 @@ class AlarmEditor : AppCompatActivity() {
     }
 
     /*show snoozeTimePicker fragment*/
-    fun setSnoozeTimePicker(){
+    private fun setSnoozeTimePicker(){
         edit_snooze_minutes_relLayout.setOnClickListener {
             val snnozeDialog = AlarmSnoozeTimePickerDialogFragment()
             val fm = supportFragmentManager
@@ -111,13 +112,63 @@ class AlarmEditor : AppCompatActivity() {
     }
 
     /*show ringToneChooser fragment fragment*/
-    fun setRingtoneChooser(){
+    private fun setRingtoneChooser(){
         edit_ringtone_relLayout.setOnClickListener {
             val ringtoneDialog = AlarmRingtoneChooserDialogFragment()
             val fm = supportFragmentManager
 
             ringtoneDialog.show(fm, getString(R.string.select_ringhtone))
         }
+    }
+
+    private fun daysOfWeekChooser() {
+        var mondayToggle: Boolean
+        var tuesdayToggle: Boolean
+        var wednesdayToggle: Boolean
+        var thursdayToggle: Boolean
+        var fridayToggle: Boolean
+        var saturdayToggle: Boolean
+        var sundayToggle: Boolean
+        poniedzialek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            mondayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser: monday $mondayToggle")
+        }
+
+        wtorek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            tuesdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser: tuesday $tuesdayToggle")
+        }
+
+        sroda_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            wednesdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  wednesday $wednesdayToggle")
+        }
+
+        czwartek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            thursdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  thursday $thursdayToggle")
+        }
+
+        piatek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            fridayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser: friday $fridayToggle")
+        }
+
+        sobota_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            saturdayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  saturday $saturdayToggle")
+        }
+
+        niedziela_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            sundayToggle = isChecked
+            Log.d(TAG, "daysOfWeekChooser:  sunday $sundayToggle")
+        }
+//        if(wtorek_toggle.isChecked) mondayToggle = true
+//        if(poniedzialek_toggle.isChecked) mondayToggle = true
+//        if(poniedzialek_toggle.isChecked) mondayToggle = true
+//        if(poniedzialek_toggle.isChecked) mondayToggle = true
+//        if(poniedzialek_toggle.isChecked) mondayToggle = true
+//        if(poniedzialek_toggle.isChecked) mondayToggle = true
     }
 
     private fun cancel(){
