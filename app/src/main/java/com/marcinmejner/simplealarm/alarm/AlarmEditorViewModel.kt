@@ -44,6 +44,28 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         if(mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
                 && saturdayToggle && sundayToggle) return "Codziennie"
 
+        /*Single Days*/
+        else if((mondayToggle) && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK"
+
+        else if(!mondayToggle && (tuesdayToggle) && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "WTOREK"
+
+        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle) && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "ŚRODA"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle) && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "CZWARTEK"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "PIĄTEK"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && (saturdayToggle) && !sundayToggle) return "SOBOTA"
+
+        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && (sundayToggle)) return "NIEDZIELA"
+
         /*Monday - xxx */
         else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
                 && saturdayToggle) && !sundayToggle) return "PONIEDZIAŁEK-SOBOTA"
@@ -60,8 +82,122 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         else if((mondayToggle && tuesdayToggle) && !wednesdayToggle && !thursdayToggle && !fridayToggle
                 && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK-WTOREK"
 
-        else if((mondayToggle) && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
-                && !saturdayToggle && !sundayToggle) return "PONIEDZIAŁEK"
+        else if((mondayToggle && tuesdayToggle) && !wednesdayToggle && (thursdayToggle && fridayToggle
+                && saturdayToggle && sundayToggle)) return "PON-WTO, CZW-NIE"
+
+        else if((mondayToggle && tuesdayToggle) && !wednesdayToggle && (thursdayToggle && fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "PON-WTO, CZW-SOB"
+
+        else if((mondayToggle && tuesdayToggle) && !wednesdayToggle && (thursdayToggle && fridayToggle)
+                        && !saturdayToggle && !sundayToggle) return "PON-WTO, CZW-PIĄ"
+
+        else if((mondayToggle && tuesdayToggle) && !wednesdayToggle && (thursdayToggle && fridayToggle)
+                && !saturdayToggle && (sundayToggle)) return "PON-WTO, CZW-PIĄ, NIE"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle) && !thursdayToggle && (fridayToggle
+                && saturdayToggle && sundayToggle)) return "PON-ŚRO, PIĄ-NIE"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle) && !thursdayToggle && (fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "PON-ŚRO, PIĄ-SOB"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle) && !thursdayToggle && (fridayToggle)
+                        && !saturdayToggle && !sundayToggle) return "PON-ŚRO, PIĄ"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle) && !thursdayToggle && (fridayToggle)
+                && !saturdayToggle && (sundayToggle)) return "PON-ŚRO, PIĄ, NIE"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle) && (!fridayToggle)
+                && (saturdayToggle && sundayToggle)) return "PON-CZW, SOB-NIE"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle) && (!fridayToggle)
+                && saturdayToggle && (!sundayToggle)) return "PON-CZW, SOB"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle) && (!fridayToggle)
+                && !saturdayToggle && (sundayToggle)) return "PON-CZW, NIE"
+
+        else if((mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle)
+                && !saturdayToggle && (sundayToggle)) return "PON-PIĄ, NIE"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle) && !thursdayToggle && (fridayToggle)
+                && !saturdayToggle && (sundayToggle)) return "PON, ŚRO, PIĄ, NIE"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle) && !thursdayToggle && (fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "PON, ŚRO, PIĄ"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle) && !thursdayToggle && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PON, ŚRO"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle) && !fridayToggle
+                && !saturdayToggle && !sundayToggle) return "PON, ŚRO-CZW"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle)
+                && !saturdayToggle && !sundayToggle) return "PON, ŚRO-PIĄ"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle
+                && saturdayToggle) && !sundayToggle) return "PON, ŚRO-SOB"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle
+                        && saturdayToggle && sundayToggle)) return "PON, ŚRO-NIE"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle) && !fridayToggle
+                        && (saturdayToggle && sundayToggle)) return "PON, ŚRO-CZW, SOB-NIE"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle) && !fridayToggle
+                && (saturdayToggle) && !sundayToggle) return "PON, ŚRO-CZW, SOB"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle) && !fridayToggle
+                && (!saturdayToggle) && (sundayToggle)) return "PON, ŚRO-CZW, NIE"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle)
+                && (!saturdayToggle && !sundayToggle)) return "PON, ŚRO-PIĄ"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle)
+                && (!saturdayToggle) && sundayToggle) return "PON, ŚRO-PIĄ, NIE"
+
+        else if((mondayToggle) && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle
+                && saturdayToggle) && !sundayToggle) return "PON, ŚRO-SOB"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle) && (thursdayToggle && fridayToggle)
+                        && !saturdayToggle && !sundayToggle) return "PON, CZW-PIĄ"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle) && (thursdayToggle && fridayToggle)
+                && (!saturdayToggle) && sundayToggle) return "PON, CZW-PIĄ, NIE"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle && !thursdayToggle) && (fridayToggle
+                && saturdayToggle) && !sundayToggle) return "PON, PIĄ-SOB"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle)
+                        && (saturdayToggle) && !sundayToggle) return "PON, SOB"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle) && sundayToggle) return "PON, NIE"
+
+        else if((mondayToggle) && (!tuesdayToggle) && wednesdayToggle && (!thursdayToggle) && (fridayToggle
+                        && saturdayToggle && sundayToggle)) return "PON, ŚRO, PIĄ-NIE"
+
+        else if((mondayToggle) && (!tuesdayToggle) && wednesdayToggle && (!thursdayToggle) && (fridayToggle
+                        && saturdayToggle) && !sundayToggle) return "PON, ŚRO, PIĄ-SOB"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle) && (thursdayToggle && fridayToggle
+                        && saturdayToggle && sundayToggle)) return "PON, CZW-NIE"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle) && (thursdayToggle) && (!fridayToggle
+                        && !saturdayToggle && !sundayToggle)) return "PON, CZW"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle && !thursdayToggle) && (fridayToggle)
+                        && (!saturdayToggle && !sundayToggle)) return "PON, PIĄ"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle)
+                && (saturdayToggle) && (!sundayToggle)) return "PON, SOB"
+
+        else if((mondayToggle) && (!tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
+                && !saturdayToggle) && (sundayToggle)) return "PON, NIE"
+
+
+
+
+
+
 
         /*Tuesday - xxx*/
         else if((!mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
@@ -79,8 +215,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         else if(!mondayToggle && (tuesdayToggle && wednesdayToggle) && !thursdayToggle && !fridayToggle
                 && !saturdayToggle && !sundayToggle) return "WTOREK-ŚRODA"
 
-        else if(!mondayToggle && (tuesdayToggle) && !wednesdayToggle && !thursdayToggle && !fridayToggle
-                && !saturdayToggle && !sundayToggle) return "WTOREK"
+
 
         /*Wednesday - xxx */
         else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle && thursdayToggle && fridayToggle
@@ -95,8 +230,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle && thursdayToggle) && !fridayToggle
                 && !saturdayToggle && !sundayToggle) return "ŚRODA-CZWARTEK"
 
-        else if(!mondayToggle && !tuesdayToggle && (wednesdayToggle) && !thursdayToggle && !fridayToggle
-                && !saturdayToggle && !sundayToggle) return "ŚRODA"
+
 
         /*Thursday - xxx */
         else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle && fridayToggle
@@ -108,8 +242,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle && fridayToggle)
                 && !saturdayToggle && !sundayToggle) return "CZWARTEK-PIĄTEK"
 
-        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && (thursdayToggle) && !fridayToggle
-                && !saturdayToggle && !sundayToggle) return "CZWARTEK"
+
 
         /*Friday - xxx*/
         else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle
@@ -118,21 +251,12 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle
                         && saturdayToggle) && !sundayToggle) return "PIĄTEK-SOBOTA"
 
-        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && (fridayToggle)
-                && !saturdayToggle && !sundayToggle) return "PIĄTEK"
+
 
         /*Saturday - xxx*/
         else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
                         && (saturdayToggle && sundayToggle)) return "WEEKEND"
 
-        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
-                        && (saturdayToggle) && !sundayToggle) return "SOBOTA"
-
-        /*Sunday*/
-        else if(!mondayToggle && !tuesdayToggle && !wednesdayToggle && !thursdayToggle && !fridayToggle
-                && !saturdayToggle && (sundayToggle)) return "NIEDZIELA"
-
-
-        else return "coś"
+        else return ""
     }
 }
