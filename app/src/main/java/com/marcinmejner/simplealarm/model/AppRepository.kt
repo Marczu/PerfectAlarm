@@ -68,4 +68,10 @@ class AppRepository private constructor(context: Context) {
             db.alarmeDao().insertAlarm(newAlarm)
         }
     }
+
+    fun updateIsAlarmOnById(isAlarmOn: Boolean, id: Int) {
+        executor.execute {
+            db.alarmeDao().updateIsAlarmOnById(isAlarmOn, id)
+        }
+    }
 }

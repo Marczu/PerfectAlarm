@@ -85,5 +85,15 @@ class DataBaseTest {
         Assert.assertEquals(0, dao?.getCount())
     }
 
+    @Test
+    fun appDatabse_updateIsAlarmEnabled_succes() {
+        dao?.insertAll(SampleAlarmData().getSampleAlarms())
+        dao?.updateIsAlarmOnById(false, 2)
+        val alarmDisabled = dao?.getAlarmById(2)?.isAlarmEnabled
+        Log.d(TAG, "appDatabse_updateIsAlarmEnabled_succes: $alarmDisabled")
+
+        Assert.assertEquals(false, alarmDisabled)
+    }
+
 
 }

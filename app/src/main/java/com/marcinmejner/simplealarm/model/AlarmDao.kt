@@ -30,6 +30,8 @@ interface AlarmDao {
     @Query("DELETE FROM alarm ")
     fun deleteAll() : Int
 
+    @Query("UPDATE alarm SET isAlarmEnabled = :isAlarmOn WHERE id = :id")
+    fun updateIsAlarmOnById(isAlarmOn: Boolean, id: Int)
 
 
 }

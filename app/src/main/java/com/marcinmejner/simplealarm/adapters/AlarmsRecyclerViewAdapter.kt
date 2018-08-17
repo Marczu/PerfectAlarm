@@ -31,8 +31,18 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         holder.alarmSnoozeTime.text = alarmsList[position]?.snoozeMinutes.toString()
         holder.daysOfWeek.text = alarmsList[position]?.daysOfWeek.toString()
 
-        if(alarmsList[position].isAlarmEnabled){
-            holder.alarmSwitch.isChecked = true
+        holder.alarmSwitch.isChecked = alarmsList[position].isAlarmEnabled
+
+        holder.alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                updateIsAlarmOn(true, position)
+                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
+            }
+            else {
+                updateIsAlarmOn(false, position)
+                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
+
+            }
         }
 
         isSnoozeEnabled(holder, position)
@@ -65,6 +75,10 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         holder.deleteSingleAlarm.setOnClickListener {
             alarmsViewModel.deleteSingleAlarmById(alarmsList[position].id)
         }
+    }
+
+    fun updateIsAlarmOn(isAlarmOn: Boolean, position: Int){
+        alarmsViewModel.updateIsAlarmEnabled(isAlarmOn, alarmsList[position].id)
     }
 
     /*Check if minutes or hours are <10 and add 0*/

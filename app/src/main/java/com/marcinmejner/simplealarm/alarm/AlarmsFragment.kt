@@ -48,7 +48,6 @@ class AlarmsFragment : Fragment() {
         recyclerView.hasFixedSize()
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
-
     }
 
     private fun initViewModel() {
@@ -76,11 +75,6 @@ class AlarmsFragment : Fragment() {
             }
         }
     }
-
-    /*Sample Room Data for testing*/
-//    private fun addSampleData() {
-//        alarmsViewModel.addSampleData()
-//    }
 
     /*Delete all alarms from Room databse*/
     private fun deleteAllAlarms(){

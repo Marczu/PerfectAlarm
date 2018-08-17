@@ -29,4 +29,8 @@ class AlarmsViewModel(application: Application) : AndroidViewModel(application) 
         repository.deleteSingleAlarmById(id)
     }
 
+    fun updateIsAlarmEnabled(isAlarmOn: Boolean, id: Int){
+        repository.updateIsAlarmOnById(isAlarmOn, id)
+    }
+
 }
