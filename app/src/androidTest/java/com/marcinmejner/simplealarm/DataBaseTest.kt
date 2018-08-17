@@ -58,4 +58,32 @@ class DataBaseTest {
         Assert.assertEquals(1, fromDb.id)
     }
 
+    @Test
+    fun appDatabse_removeSingleAlarmById_succes() {
+        dao?.insertAll(SampleAlarmData().getSampleAlarms())
+        var count = 3
+        dao?.deleteAlarmById(1)
+
+        Assert.assertEquals(dao?.getCount(), count)
+    }
+
+    @Test
+    fun appDatabse_selectAlarmById_succes() {
+        dao?.insertAll(SampleAlarmData().getSampleAlarms())
+        var alarmName = "Jakiś Alarm"
+        val alarm = dao?.getAlarmById(2)
+
+
+        Assert.assertEquals(alarmName, alarm?.name)
+    }
+
+    @Test
+    fun appDatabse_removeAllAlarms_succes() {
+        dao?.insertAll(SampleAlarmData().getSampleAlarms())
+        dao?.deleteAll()
+
+        Assert.assertEquals(0, dao?.getCount())
+    }
+
+
 }
