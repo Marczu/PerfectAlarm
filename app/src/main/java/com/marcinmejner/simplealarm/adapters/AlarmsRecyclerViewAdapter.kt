@@ -33,17 +33,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
 
         holder.alarmSwitch.isChecked = alarmsList[position].isAlarmEnabled
 
-        holder.alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
-                updateIsAlarmOn(true, position)
-                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
-            }
-            else {
-                updateIsAlarmOn(false, position)
-                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
-
-            }
-        }
+        alarmSwitch(holder, position)
 
         isSnoozeEnabled(holder, position)
 
@@ -61,6 +51,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         val snoozeTv = view.snooze_tv
         val deleteSingleAlarm = view.alarm_item_delete_alarm
         val daysOfWeek = view.alarm_item_tv_days_of_week
+        val daysOfWeekIv = view.iv_days_of_week
     }
 
     /*Check if snooze is enabled, if no then disable snooze view*/
@@ -99,5 +90,37 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         }
 
         return "$hoursAfter:$minutesAfter"
+    }
+
+    fun alarmSwitch(holder: ViewHolder, position: Int){
+        holder.alarmSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                updateIsAlarmOn(true, position)
+                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
+            }
+            else {
+                updateIsAlarmOn(false, position)
+                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
+            }
+        }
+
+        /*Set opacity of layout when alarm is turned off*/
+        if(alarmsList[position].isAlarmEnabled) {
+            holder.alarmItemLayout.background.alpha = 255
+            holder.alarmTime.alpha = 1.0f
+            holder.alarmTitle.alpha = 1.0f
+            holder.alarmSnoozeTime.alpha = 1.0f
+            holder.daysOfWeek.alpha = 1.0f
+            holder.daysOfWeekIv.alpha = 1.0f
+        }
+        else {
+            holder.alarmItemLayout.background.alpha = 128
+            holder.alarmTime.alpha = 0.5f
+            holder.alarmTitle.alpha = 0.5f
+            holder.alarmSnoozeTime.alpha = 0.5f
+            holder.daysOfWeek.alpha = 0.5f
+            holder.daysOfWeekIv.alpha = 0.5f
+
+        }
     }
 }
