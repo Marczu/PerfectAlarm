@@ -1,12 +1,14 @@
 package com.marcinmejner.simplealarm.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.alarm.AlarmEditor
 import com.marcinmejner.simplealarm.alarm.AlarmsViewModel
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import kotlinx.android.synthetic.main.alarm_list_item.view.*
@@ -38,6 +40,8 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         isSnoozeEnabled(holder, position)
 
         deleteSingleAlarm(holder, position)
+
+        goToEditAlarm(holder, position)
 
         Log.d(TAG, "onBindViewHolder:  wewnątrz RV ${alarmsList[position]?.name}")
     }
@@ -122,5 +126,16 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
             holder.daysOfWeekIv.alpha = 0.5f
 
         }
+    }
+
+    fun goToEditAlarm(holder: ViewHolder, position: Int){
+        holder.alarmItemLayout.setOnClickListener {
+
+            Intent(context, AlarmEditor::class.java).apply {
+                putExtra(context.getString(R.string.callingActivity), context.getString(R.string.editExistingAlarm))
+                context.startActivity(this)
+            }
+        }
+
     }
 }

@@ -5,4 +5,8 @@
     <!--dialog dragments-->
     <string name="select_snooze_time">select_snooze_time</string>
     <string name="select_ringhtone">select_ringhtone</string>
+
+    <!--From Intent-->
+    <string name="callingActivity">callingActivity</string>
+    <string name="editExistingAlarm">editExistingAlarm</string>
 </resources>
