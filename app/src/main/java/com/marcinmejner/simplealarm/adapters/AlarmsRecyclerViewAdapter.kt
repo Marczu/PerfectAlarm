@@ -133,6 +133,7 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
 
             Intent(context, AlarmEditor::class.java).apply {
                 putExtra(context.getString(R.string.callingActivity), context.getString(R.string.editExistingAlarm))
+                putExtra(context.getString(R.string.alarmId), alarmsList[position].id)
                 context.startActivity(this)
             }
         }

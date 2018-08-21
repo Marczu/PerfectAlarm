@@ -4,6 +4,12 @@ import android.arch.lifecycle.LiveData
 import android.content.Context
 import android.util.Log
 import com.marcinmejner.simplealarm.utils.SampleAlarmData
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
+import org.jetbrains.anko.coroutines.experimental.bg
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
@@ -47,15 +53,10 @@ class AppRepository private constructor(context: Context) {
         return db.alarmeDao().getall()
     }
 
-    fun getAlarmById(alarmId: Int): AlarmEntity? {
+    fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
         return db.alarmeDao().getAlarmById(alarmId)
     }
 
-    fun insertNote(alarm: AlarmEntity) {
-        executor.execute {
-            db.alarmeDao().insertAlarm(alarm)
-        }
-    }
 
     fun deleteAllAlarms() {
         executor.execute {

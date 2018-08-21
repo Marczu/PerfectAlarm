@@ -9,4 +9,5 @@
     <!--From Intent-->
     <string name="callingActivity">callingActivity</string>
     <string name="editExistingAlarm">editExistingAlarm</string>
+    <string name="alarmId">alarmId</string>
 </resources>

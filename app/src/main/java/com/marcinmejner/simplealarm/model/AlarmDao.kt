@@ -16,7 +16,7 @@ interface AlarmDao {
     fun deleteAlarm(alarmEntity: AlarmEntity)
 
     @Query("SELECT * FROM alarm WHERE id = :id")
-    fun getAlarmById(id: Int): AlarmEntity
+    fun getAlarmById(id: Int): LiveData<AlarmEntity>
 
     @Query("DELETE FROM alarm WHERE id = :id ")
     fun deleteAlarmById(id: Int) : Int

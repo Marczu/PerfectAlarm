@@ -3,6 +3,7 @@ package com.marcinmejner.simplealarm.model
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @Entity(tableName = "alarm")
@@ -16,6 +17,7 @@ data class AlarmEntity(
         var name: String = "Mój budzik",
         var ringTone: String = "",
         var daysOfWeek: String = "",
+//        var daysOfWeekCheck: ArrayList<Boolean>? = null,
         var isAlarmEnabled: Boolean = true,
         var isSnoozeEnabled: Boolean = false
 )

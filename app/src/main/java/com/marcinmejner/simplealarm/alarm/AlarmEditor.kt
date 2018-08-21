@@ -1,5 +1,6 @@
 package com.marcinmejner.simplealarm.alarm
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,8 @@ import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 
 class AlarmEditor : AppCompatActivity() {
     private val TAG = "AlarmEditor"
@@ -17,8 +20,10 @@ class AlarmEditor : AppCompatActivity() {
     lateinit var hourPicker: NumberPicker
     lateinit var minutePicker: NumberPicker
 
+
     //vars
     lateinit var editorViewModel: AlarmEditorViewModel
+    lateinit var existingAlarm: AlarmEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +39,10 @@ class AlarmEditor : AppCompatActivity() {
         setSnoozeTimePicker()
         setRingtoneChooser()
         daysOfWeekChooser()
+        setDataFromEditingAlarm()
         cancel()
     }
+
 
     private fun initViewModel() {
         editorViewModel = ViewModelProviders.of(this)
@@ -62,7 +69,6 @@ class AlarmEditor : AppCompatActivity() {
             Log.d(TAG, "saveNewAlarm: $alarmName")
 
 
-
             /*Adding new alarm to databse*/
             val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked,
                     name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!,
@@ -78,9 +84,9 @@ class AlarmEditor : AppCompatActivity() {
         /*Setting hour values 00 to 23*/
         val displaydHourValues = arrayOfNulls<String>(24)
         for (i in 0..23) {
-            if (i<10){
+            if (i < 10) {
                 displaydHourValues[i] = "0$i"
-            }else{
+            } else {
                 displaydHourValues[i] = "$i"
             }
         }
@@ -88,9 +94,9 @@ class AlarmEditor : AppCompatActivity() {
         /*Setting minutes values 00 to 60*/
         val displayMinutesdValues = arrayOfNulls<String>(61)
         for (i in 0..60) {
-            if (i<10){
+            if (i < 10) {
                 displayMinutesdValues[i] = "0$i"
-            }else{
+            } else {
                 displayMinutesdValues[i] = "$i"
             }
         }
@@ -108,7 +114,7 @@ class AlarmEditor : AppCompatActivity() {
     }
 
     /*show snoozeTimePicker fragment*/
-    private fun setSnoozeTimePicker(){
+    private fun setSnoozeTimePicker() {
         edit_snooze_minutes_relLayout.setOnClickListener {
             val snnozeDialog = AlarmSnoozeTimePickerDialogFragment()
             val fm = supportFragmentManager
@@ -118,7 +124,7 @@ class AlarmEditor : AppCompatActivity() {
     }
 
     /*show ringToneChooser fragment fragment*/
-    private fun setRingtoneChooser(){
+    private fun setRingtoneChooser() {
         edit_ringtone_relLayout.setOnClickListener {
             val ringtoneDialog = AlarmRingtoneChooserDialogFragment()
             val fm = supportFragmentManager
@@ -131,42 +137,64 @@ class AlarmEditor : AppCompatActivity() {
 
         poniedzialek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.mondayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser: monday ${ editorViewModel.mondayToggle}")
+            Log.d(TAG, "daysOfWeekChooser: monday ${editorViewModel.mondayToggle}")
         }
 
         wtorek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.tuesdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser: tuesday ${ editorViewModel.tuesdayToggle}")
+            Log.d(TAG, "daysOfWeekChooser: tuesday ${editorViewModel.tuesdayToggle}")
         }
 
         sroda_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.wednesdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  wednesday ${ editorViewModel.wednesdayToggle}")
+            Log.d(TAG, "daysOfWeekChooser:  wednesday ${editorViewModel.wednesdayToggle}")
         }
 
         czwartek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.thursdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  thursday ${ editorViewModel.thursdayToggle}")
+            Log.d(TAG, "daysOfWeekChooser:  thursday ${editorViewModel.thursdayToggle}")
         }
 
         piatek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.fridayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser: friday ${ editorViewModel.fridayToggle}")
+            Log.d(TAG, "daysOfWeekChooser: friday ${editorViewModel.fridayToggle}")
         }
 
         sobota_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.saturdayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  saturday ${ editorViewModel.saturdayToggle}")
+            Log.d(TAG, "daysOfWeekChooser:  saturday ${editorViewModel.saturdayToggle}")
         }
 
         niedziela_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.sundayToggle = isChecked
-            Log.d(TAG, "daysOfWeekChooser:  sunday ${ editorViewModel.sundayToggle}")
+            Log.d(TAG, "daysOfWeekChooser:  sunday ${editorViewModel.sundayToggle}")
         }
 
     }
 
-    private fun cancel(){
+    /*Get data from existing alarm from AlarmFragment, and set it to widgets*/
+    private fun setDataFromEditingAlarm() {
+        val extra = intent.extras
+        if (extra != null) {
+            val id = extra.getInt(getString(R.string.alarmId))
+            Log.d(TAG, "setDataFromEditingAlarm: id: $id")
+
+            val alarmsObserver: Observer<List<AlarmEntity>> = Observer {
+                it?.forEach {
+                    if (it.id == id) {
+                        existingAlarm = it
+                    }
+                }
+                Log.d(TAG, "setDataFromEditingAlarm: nazwa to: ${existingAlarm?.name}")
+            }
+            editorViewModel.alarms.observe(this@AlarmEditor, alarmsObserver)
+
+
+
+        }
+    }
+
+    private fun cancel() {
         edit_cancel_btn.setOnClickListener {
             finish()
         }

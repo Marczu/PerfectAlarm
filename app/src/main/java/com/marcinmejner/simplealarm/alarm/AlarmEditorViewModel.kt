@@ -39,6 +39,10 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         repository.addNewAlarm(newAlarm)
     }
 
+    fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
+        return repository.getAlarmById(alarmId)
+    }
+
     /*Check what days of week are true, when set text do display*/
     fun setDaysOfWeekText() : String{
         if(mondayToggle && tuesdayToggle && wednesdayToggle && thursdayToggle && fridayToggle
