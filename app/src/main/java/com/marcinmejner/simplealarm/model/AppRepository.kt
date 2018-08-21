@@ -75,4 +75,11 @@ class AppRepository private constructor(context: Context) {
             db.alarmeDao().updateIsAlarmOnById(isAlarmOn, id)
         }
     }
+
+    fun updateAlarmById(alarmMinutes: String, alarmHours: String, snoozeMinutes: Int, name: String,
+                        ringTone: String, daysOfWeek: String, isAlarmOn: Boolean, isSnoozeEnabled: Boolean, id: Int) {
+        executor.execute {
+            db.alarmeDao().updateAlarmById(alarmMinutes, alarmHours, snoozeMinutes, name, ringTone, daysOfWeek, isAlarmOn, isSnoozeEnabled, id)
+        }
+    }
 }

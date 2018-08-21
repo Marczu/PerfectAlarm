@@ -68,13 +68,22 @@ class AlarmEditor : AppCompatActivity() {
             val alarmName = editorViewModel.isTitleEmpty(edit_alarm_title_et.text.toString())
             Log.d(TAG, "saveNewAlarm: $alarmName")
 
-
-            /*Adding new alarm to databse*/
             val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked,
                     name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!,
                     daysOfWeek = daysOfWeekText)
-            editorViewModel.addNewAlarm(newAlarm)
 
+            val extra = intent.extras
+
+            /*Update Existing alarm when comming from edit button*/
+            if (extra != null) {
+                val id = extra.getInt(getString(R.string.alarmId))
+                editorViewModel.updateAlarmById(newAlarm.alarmMinutes!!, newAlarm.alarmHours!!, newAlarm.snoozeMinutes, newAlarm.name,
+                        newAlarm.ringTone, newAlarm.daysOfWeek, newAlarm.isAlarmEnabled, newAlarm.isSnoozeEnabled, id)
+
+            /*Create new Alarm*/
+            } else {
+                editorViewModel.addNewAlarm(newAlarm)
+            }
             finish()
         }
     }
@@ -177,20 +186,24 @@ class AlarmEditor : AppCompatActivity() {
         val extra = intent.extras
         if (extra != null) {
             val id = extra.getInt(getString(R.string.alarmId))
-            Log.d(TAG, "setDataFromEditingAlarm: id: $id")
 
             val alarmsObserver: Observer<List<AlarmEntity>> = Observer {
                 it?.forEach {
                     if (it.id == id) {
                         existingAlarm = it
+
+                        hourPicker.value = existingAlarm.alarmHours?.toInt()!!
+                        minutePicker.value = existingAlarm.alarmMinutes?.toInt()!!
+
+                        edit_alarm_title_et.setText(existingAlarm.name)
+//                        edit_snooze_minutes_et.text = "${existingAlarm.snoozeMinutes} minut"
+                        editorViewModel.snoozeTime.value = existingAlarm.snoozeMinutes
+
                     }
                 }
                 Log.d(TAG, "setDataFromEditingAlarm: nazwa to: ${existingAlarm?.name}")
             }
             editorViewModel.alarms.observe(this@AlarmEditor, alarmsObserver)
-
-
-
         }
     }
 

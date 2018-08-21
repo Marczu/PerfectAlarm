@@ -33,5 +33,8 @@ interface AlarmDao {
     @Query("UPDATE alarm SET isAlarmEnabled = :isAlarmOn WHERE id = :id")
     fun updateIsAlarmOnById(isAlarmOn: Boolean, id: Int)
 
+    @Query("UPDATE alarm SET alarmMinutes = :alarmMinutes, alarmHours = :alarmHours, snoozeMinutes = :snoozeMinutes, name = :name, ringTone = :ringTone, daysOfWeek = :daysOfWeek, isAlarmEnabled = :isAlarmOn, isSnoozeEnabled = :isSnoozeEnabled WHERE id = :id")
+    fun updateAlarmById(alarmMinutes: String, alarmHours: String, snoozeMinutes: Int, name: String, ringTone: String, daysOfWeek: String, isAlarmOn: Boolean, isSnoozeEnabled: Boolean, id: Int)
+
 
 }

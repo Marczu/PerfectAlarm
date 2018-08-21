@@ -39,6 +39,11 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
         repository.addNewAlarm(newAlarm)
     }
 
+    fun updateAlarmById(alarmMinutes: String, alarmHours: String, snoozeMinutes: Int, name: String,
+                        ringTone: String, daysOfWeek: String, isAlarmOn: Boolean, isSnoozeEnabled: Boolean, id: Int) {
+       repository.updateAlarmById(alarmMinutes, alarmHours, snoozeMinutes, name, ringTone, daysOfWeek, isAlarmOn, isSnoozeEnabled, id)
+    }
+
     fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
         return repository.getAlarmById(alarmId)
     }
