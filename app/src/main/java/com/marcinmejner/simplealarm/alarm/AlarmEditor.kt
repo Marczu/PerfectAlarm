@@ -63,6 +63,7 @@ class AlarmEditor : AppCompatActivity() {
             val snoozeMinutes = editorViewModel.snoozeTime.value
             val ringtone = editorViewModel.ringtone.value
             val daysOfWeekText = editorViewModel.setDaysOfWeekText()
+            val isAlarmEnabled = editorViewModel.isAlarmEnabled
             Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
 
             val alarmName = editorViewModel.isTitleEmpty(edit_alarm_title_et.text.toString())
@@ -70,7 +71,7 @@ class AlarmEditor : AppCompatActivity() {
 
             val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked,
                     name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!,
-                    daysOfWeek = daysOfWeekText)
+                    daysOfWeek = daysOfWeekText, isAlarmEnabled = isAlarmEnabled)
 
             val extra = intent.extras
 
@@ -198,6 +199,7 @@ class AlarmEditor : AppCompatActivity() {
                         edit_alarm_title_et.setText(existingAlarm.name)
 //                        edit_snooze_minutes_et.text = "${existingAlarm.snoozeMinutes} minut"
                         editorViewModel.snoozeTime.value = existingAlarm.snoozeMinutes
+                        editorViewModel.isAlarmEnabled = existingAlarm.isAlarmEnabled
 
                     }
                 }

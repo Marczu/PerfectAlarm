@@ -14,6 +14,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
     var snoozeTime: MutableLiveData<Int> = MutableLiveData()
     var ringtone: MutableLiveData<String> = MutableLiveData()
 
+    var isAlarmEnabled: Boolean = true
     var mondayToggle: Boolean = true
     var tuesdayToggle: Boolean = true
     var wednesdayToggle: Boolean = true
