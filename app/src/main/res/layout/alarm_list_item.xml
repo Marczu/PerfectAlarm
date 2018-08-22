@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+
         <!--Alarm Title-->
         <TextView
             android:id="@+id/alarm_item_title"
@@ -107,6 +109,48 @@
             android:layout_marginBottom="5dp"
             android:textSize="14dp"
             android:text="Codziennie"/>
+
+        <RelativeLayout
+            android:id="@+id/delete_confirm_relLayout"
+            android:layout_width="230dp"
+            android:layout_height="80dp"
+            android:background="@drawable/background"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Napewno usunąć Alarm?"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/delete_alarm_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:text="Usuń"
+                android:padding="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/delete_alarm_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:text="Anuluj"
+                android:padding="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
 
 

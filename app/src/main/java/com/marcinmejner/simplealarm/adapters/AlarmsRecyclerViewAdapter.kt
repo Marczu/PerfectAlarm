@@ -56,6 +56,9 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         val deleteSingleAlarm = view.alarm_item_delete_alarm
         val daysOfWeek = view.alarm_item_tv_days_of_week
         val daysOfWeekIv = view.iv_days_of_week
+        val deleteAlarmConfirmLayout = view.delete_confirm_relLayout
+        val deleteAlarmYes = view.delete_alarm_yes
+        val deleteAlarmCancel = view.delete_alarm_cancel
     }
 
     /*Check if snooze is enabled, if no then disable snooze view*/
@@ -66,9 +69,19 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
         }
     }
 
+    /*Display confirm box, allow to delete single alarm*/
     fun deleteSingleAlarm(holder: ViewHolder, position: Int){
         holder.deleteSingleAlarm.setOnClickListener {
-            alarmsViewModel.deleteSingleAlarmById(alarmsList[position].id)
+            holder.deleteAlarmConfirmLayout.visibility = View.VISIBLE
+
+            holder.deleteAlarmYes.setOnClickListener {
+                alarmsViewModel.deleteSingleAlarmById(alarmsList[position].id)
+                holder.deleteAlarmConfirmLayout.visibility = View.GONE
+            }
+
+            holder.deleteAlarmCancel.setOnClickListener {
+                holder.deleteAlarmConfirmLayout.visibility = View.GONE
+            }
         }
     }
 
