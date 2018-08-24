@@ -2,6 +2,7 @@ package com.marcinmejner.simplealarm.model
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
 
 @Dao
 interface AlarmDao {
@@ -26,6 +27,9 @@ interface AlarmDao {
 
     @Query("SELECT * FROM alarm")
     fun getall() : LiveData<List<AlarmEntity>>
+
+    @Query("SELECT * FROM alarm")
+    fun getallRx() : Flowable<List<AlarmEntity>>
 
     @Query("DELETE FROM alarm ")
     fun deleteAll() : Int

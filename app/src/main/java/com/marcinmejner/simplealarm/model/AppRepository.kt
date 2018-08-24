@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.content.Context
 import android.util.Log
 import com.marcinmejner.simplealarm.utils.SampleAlarmData
+import io.reactivex.Flowable
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
@@ -51,6 +52,10 @@ class AppRepository private constructor(context: Context) {
 
     fun getAllAlarms(): LiveData<List<AlarmEntity>> {
         return db.alarmeDao().getall()
+    }
+
+    fun getAllAlarmsRx(): Flowable<List<AlarmEntity>> {
+        return db.alarmeDao().getallRx()
     }
 
     fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
