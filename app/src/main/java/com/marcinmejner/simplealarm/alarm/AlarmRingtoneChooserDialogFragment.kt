@@ -2,24 +2,18 @@ package com.marcinmejner.simplealarm.alarm
 
 import android.app.Dialog
 import android.arch.lifecycle.ViewModelProviders
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.NumberPicker
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import com.marcinmejner.simplealarm.R
-import android.view.Window.FEATURE_NO_TITLE
-import android.support.constraint.ConstraintLayout
-import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.fragment_dialog_rington_chooser.view.*
-import kotlinx.android.synthetic.main.fragment_dialog_snooze_time_picker.view.*
-import android.widget.RadioButton
-
-
 
 
 class AlarmRingtoneChooserDialogFragment : DialogFragment() {
@@ -27,6 +21,7 @@ class AlarmRingtoneChooserDialogFragment : DialogFragment() {
 
     //vars
     lateinit var ringtoneChooserViewModel: AlarmEditorViewModel
+    lateinit var player: MediaPlayer
 
     //widgets
     lateinit var cancelDialog: TextView
@@ -35,14 +30,22 @@ class AlarmRingtoneChooserDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_dialog_rington_chooser, container, false)
-        cancelDialog = view.ringtone_cancel_btn
-        saveDialog = view.ringtone_save_btn
-        radioGroup = view.radioGroup
+
+        initWidgets(view)
 
         initViewModel()
         saveRingtone(view)
+        cancelDialog()
+        ringtonePlayer(view)
 
         return view
+    }
+
+    private fun initWidgets(view: View) {
+        cancelDialog = view.ringtone_cancel_btn
+        saveDialog = view.ringtone_save_btn
+        radioGroup = view.radioGroup
+        player = MediaPlayer()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -54,20 +57,35 @@ class AlarmRingtoneChooserDialogFragment : DialogFragment() {
     private fun initViewModel() {
         ringtoneChooserViewModel = ViewModelProviders.of(activity!!)
                 .get(AlarmEditorViewModel::class.java)
-
-        //        val ringtoneObserver: Observer<String> = Observer {
-//
-//        }
-
-
-//        snoozeTimeViewModel.ringtone.observe(this@AlarmSnoozeTimePickerDialogFragment, ringtoneObserver)
     }
 
     fun saveRingtone(view: View){
         saveDialog.setOnClickListener {
             val ringtoneChoosen = (view.findViewById(radioGroup.checkedRadioButtonId) as RadioButton).text.toString()
             ringtoneChooserViewModel.ringtone.value = ringtoneChoosen
+            player.stop()
             AlarmRingtoneChooserDialogFragment@ this.dismiss()
+        }
+    }
+
+    fun cancelDialog(){
+        cancelDialog.setOnClickListener {
+            player.stop()
+            AlarmRingtoneChooserDialogFragment@ this.dismiss()
+        }
+    }
+
+    private fun ringtonePlayer(view: View) {
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+
+            player.stop()
+            val ringtoneChoosen = (view.findViewById(radioGroup.checkedRadioButtonId) as RadioButton).text.toString()
+            val resID = resources.getIdentifier(ringtoneChoosen,
+                    "raw", activity?.packageName)
+            player = MediaPlayer.create(activity, resID)
+
+            player.isLooping = true
+            player.start()
         }
     }
 
