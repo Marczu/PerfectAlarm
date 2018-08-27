@@ -16,24 +16,37 @@
         <RelativeLayout
             android:id="@+id/top_relLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-            <RadioButton
-                android:id="@+id/alarm1"
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alarm 1"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"/>
+                android:id="@+id/radioGroup"
+                android:layout_centerHorizontal="true">
 
-            <RadioButton
-                android:id="@+id/alarm2"
-                android:layout_below="@+id/alarm1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alarm 2"
-                android:textColor="@color/white"
-                android:layout_centerHorizontal="true"/>
+                <RadioButton
+                    android:id="@+id/alarm1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alarm 1"
+                    android:checked="true"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm2"
+                    android:layout_below="@+id/alarm1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Alarm 2"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+            </RadioGroup>
+
+
 
             <!--Save and cancel buttons-->
             <LinearLayout

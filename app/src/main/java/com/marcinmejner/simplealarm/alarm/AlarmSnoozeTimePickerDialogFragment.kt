@@ -1,6 +1,7 @@
 package com.marcinmejner.simplealarm.alarm
 
 import android.app.Dialog
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -12,6 +13,8 @@ import android.view.Window
 import android.widget.NumberPicker
 import android.widget.TextView
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.R.id.cancelDialog
+import com.marcinmejner.simplealarm.model.AlarmEntity
 import kotlinx.android.synthetic.main.fragment_dialog_snooze_time_picker.view.*
 
 
