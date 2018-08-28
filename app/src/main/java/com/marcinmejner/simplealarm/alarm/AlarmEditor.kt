@@ -52,6 +52,10 @@ class AlarmEditor : AppCompatActivity() {
             Log.d(TAG, "initViewModel: z obserwera : ${it!!}")
             edit_snooze_minutes_et.text = "$it minut"
         })
+
+        editorViewModel.ringtone.observe(this, android.arch.lifecycle.Observer {
+            edit_ringtone_set_tv.text = "Wybrano: $it"
+        })
     }
 
     /*Taking data from widgets and saveing it in databse*/
@@ -200,7 +204,7 @@ class AlarmEditor : AppCompatActivity() {
 //                        edit_snooze_minutes_et.text = "${existingAlarm.snoozeMinutes} minut"
                         editorViewModel.snoozeTime.value = existingAlarm.snoozeMinutes
                         editorViewModel.isAlarmEnabled = existingAlarm.isAlarmEnabled
-
+                        editorViewModel.ringtone.value = existingAlarm.ringTone
                     }
                 }
                 Log.d(TAG, "setDataFromEditingAlarm: nazwa to: ${existingAlarm?.name}")

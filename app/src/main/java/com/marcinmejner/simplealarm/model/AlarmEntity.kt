@@ -15,7 +15,7 @@ data class AlarmEntity(
         var snoozeMinutes: Int = 10,
 //        var snoozeTime: Int? = null,
         var name: String = "Mój budzik",
-        var ringTone: String = "",
+        var ringTone: String = "alarm_1",
         var daysOfWeek: String = "",
 //        var daysOfWeekCheck: ArrayList<Boolean>? = null,
         var isAlarmEnabled: Boolean = true,
