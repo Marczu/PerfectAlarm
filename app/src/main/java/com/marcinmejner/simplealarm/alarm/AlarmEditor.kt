@@ -68,6 +68,14 @@ class AlarmEditor : AppCompatActivity() {
             val ringtone = editorViewModel.ringtone.value
             val daysOfWeekText = editorViewModel.setDaysOfWeekText()
             val isAlarmEnabled = editorViewModel.isAlarmEnabled
+
+            var monday = editorViewModel.mondayToggle
+            var tuesday = editorViewModel.tuesdayToggle
+            var wednesday = editorViewModel.wednesdayToggle
+            var thursday = editorViewModel.thursdayToggle
+            var friday = editorViewModel.fridayToggle
+            var saturday = editorViewModel.saturdayToggle
+            var sunday = editorViewModel.sundayToggle
             Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
 
             val alarmName = editorViewModel.isTitleEmpty(edit_alarm_title_et.text.toString())
@@ -75,7 +83,9 @@ class AlarmEditor : AppCompatActivity() {
 
             val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked,
                     name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!,
-                    daysOfWeek = daysOfWeekText, isAlarmEnabled = isAlarmEnabled)
+                    daysOfWeek = daysOfWeekText, isAlarmEnabled = isAlarmEnabled, mondayCheck = monday,
+                    tuesdayCheck = tuesday, wednesdayCheck = wednesday, thursdayCheck = thursday,
+                    fridayCheck = friday, saturdayCheck = saturday, sundayCheck = sunday)
 
             val extra = intent.extras
 
@@ -83,7 +93,9 @@ class AlarmEditor : AppCompatActivity() {
             if (extra != null) {
                 val id = extra.getInt(getString(R.string.alarmId))
                 editorViewModel.updateAlarmById(newAlarm.alarmMinutes!!, newAlarm.alarmHours!!, newAlarm.snoozeMinutes, newAlarm.name,
-                        newAlarm.ringTone, newAlarm.daysOfWeek, newAlarm.isAlarmEnabled, newAlarm.isSnoozeEnabled, id)
+                        newAlarm.ringTone, newAlarm.daysOfWeek, newAlarm.isAlarmEnabled, newAlarm.isSnoozeEnabled,
+                        newAlarm.mondayCheck, newAlarm.tuesdayCheck, newAlarm.wednesdayCheck,
+                        newAlarm.thursdayCheck, newAlarm.fridayCheck, newAlarm.saturdayCheck, newAlarm.sundayCheck, id)
 
             /*Create new Alarm*/
             } else {
@@ -205,6 +217,27 @@ class AlarmEditor : AppCompatActivity() {
                         editorViewModel.snoozeTime.value = existingAlarm.snoozeMinutes
                         editorViewModel.isAlarmEnabled = existingAlarm.isAlarmEnabled
                         editorViewModel.ringtone.value = existingAlarm.ringTone
+
+                        editorViewModel.mondayToggle = existingAlarm.mondayCheck
+                        poniedzialek_toggle.isChecked = existingAlarm.mondayCheck
+
+                        editorViewModel.tuesdayToggle = existingAlarm.tuesdayCheck
+                        wtorek_toggle.isChecked = existingAlarm.tuesdayCheck
+
+                        editorViewModel.wednesdayToggle = existingAlarm.wednesdayCheck
+                        sroda_toggle.isChecked = existingAlarm.wednesdayCheck
+
+                        editorViewModel.thursdayToggle = existingAlarm.thursdayCheck
+                        czwartek_toggle.isChecked = existingAlarm.thursdayCheck
+
+                        editorViewModel.fridayToggle = existingAlarm.fridayCheck
+                        piatek_toggle.isChecked = existingAlarm.fridayCheck
+
+                        editorViewModel.saturdayToggle = existingAlarm.saturdayCheck
+                        sobota_toggle.isChecked = existingAlarm.saturdayCheck
+
+                        editorViewModel.sundayToggle = existingAlarm.sundayCheck
+                        niedziela_toggle.isChecked = existingAlarm.sundayCheck
                     }
                 }
                 Log.d(TAG, "setDataFromEditingAlarm: nazwa to: ${existingAlarm?.name}")

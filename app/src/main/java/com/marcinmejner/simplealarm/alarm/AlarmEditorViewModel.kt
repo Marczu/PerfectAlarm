@@ -41,8 +41,11 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun updateAlarmById(alarmMinutes: String, alarmHours: String, snoozeMinutes: Int, name: String,
-                        ringTone: String, daysOfWeek: String, isAlarmOn: Boolean, isSnoozeEnabled: Boolean, id: Int) {
-       repository.updateAlarmById(alarmMinutes, alarmHours, snoozeMinutes, name, ringTone, daysOfWeek, isAlarmOn, isSnoozeEnabled, id)
+                        ringTone: String, daysOfWeek: String, isAlarmOn: Boolean, isSnoozeEnabled: Boolean
+                        , mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean,
+                        thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int) {
+       repository.updateAlarmById(alarmMinutes, alarmHours, snoozeMinutes, name, ringTone, daysOfWeek, isAlarmOn, isSnoozeEnabled,
+               mondayCheck, tuesdayCheck, wednesdayCheck, thursdayCheck, fridayCheck,saturdayCheck, sundayCheck, id)
     }
 
     fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
