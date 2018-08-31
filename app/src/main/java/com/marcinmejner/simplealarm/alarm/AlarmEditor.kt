@@ -204,16 +204,17 @@ class AlarmEditor : AppCompatActivity() {
         if (extra != null) {
             val id = extra.getInt(getString(R.string.alarmId))
 
-            val alarmsObserver: Observer<List<AlarmEntity>> = Observer {
+            /*get data from Room and look for alarm ID that come from intent*/
+            editorViewModel.alarms.observe(this@AlarmEditor, Observer<List<AlarmEntity>>{
                 it?.forEach {
                     if (it.id == id) {
                         editorViewModel.existingAlarm.value = it
                     }
                 }
-            }
+            })
 
             /*Update widgets values*/
-            val existingAlarmsObserver: Observer<AlarmEntity> = Observer {
+            editorViewModel.existingAlarm.observe(this@AlarmEditor, Observer<AlarmEntity> {
                 hourPicker.value = it?.alarmHours?.toInt()!!
                 minutePicker.value = it.alarmMinutes?.toInt()!!
 
@@ -242,10 +243,7 @@ class AlarmEditor : AppCompatActivity() {
 
                 editorViewModel.sundayToggle = it.sundayCheck
                 niedziela_toggle.isChecked = it.sundayCheck
-            }
-
-            editorViewModel.existingAlarm.observe(this@AlarmEditor, existingAlarmsObserver)
-            editorViewModel.alarms.observe(this@AlarmEditor, alarmsObserver)
+            })
         }
     }
 
