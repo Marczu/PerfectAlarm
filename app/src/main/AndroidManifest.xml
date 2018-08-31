@@ -22,7 +22,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".alarm.AlarmEditor"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

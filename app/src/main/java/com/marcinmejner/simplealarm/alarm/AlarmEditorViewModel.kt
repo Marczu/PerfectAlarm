@@ -11,6 +11,8 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
 
     var repository: AppRepository = AppRepository.getInstance(application.applicationContext)
     var alarms: LiveData<List<AlarmEntity>>
+    var existingAlarm:MutableLiveData<AlarmEntity> = MutableLiveData()
+
     var snoozeTime: MutableLiveData<Int> = MutableLiveData()
     var ringtone: MutableLiveData<String> = MutableLiveData()
 
@@ -25,7 +27,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
 
     init {
         snoozeTime.value = 10
-        ringtone.value = "budzik"
+        ringtone.value = "alarm_1"
         alarms = repository.alarms
     }
 

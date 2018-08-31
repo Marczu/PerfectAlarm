@@ -2,6 +2,7 @@ package com.marcinmejner.simplealarm.alarm
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.persistence.room.Update
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -23,7 +24,6 @@ class AlarmEditor : AppCompatActivity() {
 
     //vars
     lateinit var editorViewModel: AlarmEditorViewModel
-    lateinit var existingAlarm: AlarmEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -207,41 +207,44 @@ class AlarmEditor : AppCompatActivity() {
             val alarmsObserver: Observer<List<AlarmEntity>> = Observer {
                 it?.forEach {
                     if (it.id == id) {
-                        existingAlarm = it
-
-                        hourPicker.value = existingAlarm.alarmHours?.toInt()!!
-                        minutePicker.value = existingAlarm.alarmMinutes?.toInt()!!
-
-                        edit_alarm_title_et.setText(existingAlarm.name)
-//                        edit_snooze_minutes_et.text = "${existingAlarm.snoozeMinutes} minut"
-                        editorViewModel.snoozeTime.value = existingAlarm.snoozeMinutes
-                        editorViewModel.isAlarmEnabled = existingAlarm.isAlarmEnabled
-                        editorViewModel.ringtone.value = existingAlarm.ringTone
-
-                        editorViewModel.mondayToggle = existingAlarm.mondayCheck
-                        poniedzialek_toggle.isChecked = existingAlarm.mondayCheck
-
-                        editorViewModel.tuesdayToggle = existingAlarm.tuesdayCheck
-                        wtorek_toggle.isChecked = existingAlarm.tuesdayCheck
-
-                        editorViewModel.wednesdayToggle = existingAlarm.wednesdayCheck
-                        sroda_toggle.isChecked = existingAlarm.wednesdayCheck
-
-                        editorViewModel.thursdayToggle = existingAlarm.thursdayCheck
-                        czwartek_toggle.isChecked = existingAlarm.thursdayCheck
-
-                        editorViewModel.fridayToggle = existingAlarm.fridayCheck
-                        piatek_toggle.isChecked = existingAlarm.fridayCheck
-
-                        editorViewModel.saturdayToggle = existingAlarm.saturdayCheck
-                        sobota_toggle.isChecked = existingAlarm.saturdayCheck
-
-                        editorViewModel.sundayToggle = existingAlarm.sundayCheck
-                        niedziela_toggle.isChecked = existingAlarm.sundayCheck
+                        editorViewModel.existingAlarm.value = it
                     }
                 }
-                Log.d(TAG, "setDataFromEditingAlarm: nazwa to: ${existingAlarm?.name}")
             }
+
+            /*Update widgets values*/
+            val existingAlarmsObserver: Observer<AlarmEntity> = Observer {
+                hourPicker.value = it?.alarmHours?.toInt()!!
+                minutePicker.value = it.alarmMinutes?.toInt()!!
+
+                edit_alarm_title_et.setText(it.name)
+                editorViewModel.snoozeTime.value = it.snoozeMinutes
+                editorViewModel.isAlarmEnabled = it.isAlarmEnabled
+                editorViewModel.ringtone.value = it.ringTone
+
+                editorViewModel.mondayToggle = it.mondayCheck
+                poniedzialek_toggle.isChecked = it.mondayCheck
+
+                editorViewModel.tuesdayToggle = it.tuesdayCheck
+                wtorek_toggle.isChecked = it.tuesdayCheck
+
+                editorViewModel.wednesdayToggle = it.wednesdayCheck
+                sroda_toggle.isChecked = it.wednesdayCheck
+
+                editorViewModel.thursdayToggle = it.thursdayCheck
+                czwartek_toggle.isChecked = it.thursdayCheck
+
+                editorViewModel.fridayToggle = it.fridayCheck
+                piatek_toggle.isChecked = it.fridayCheck
+
+                editorViewModel.saturdayToggle = it.saturdayCheck
+                sobota_toggle.isChecked = it.saturdayCheck
+
+                editorViewModel.sundayToggle = it.sundayCheck
+                niedziela_toggle.isChecked = it.sundayCheck
+            }
+
+            editorViewModel.existingAlarm.observe(this@AlarmEditor, existingAlarmsObserver)
             editorViewModel.alarms.observe(this@AlarmEditor, alarmsObserver)
         }
     }
