@@ -10,4 +10,5 @@
     <string name="callingActivity">callingActivity</string>
     <string name="editExistingAlarm">editExistingAlarm</string>
     <string name="alarmId">alarmId</string>
+    <string name="user_name">User</string>
 </resources>

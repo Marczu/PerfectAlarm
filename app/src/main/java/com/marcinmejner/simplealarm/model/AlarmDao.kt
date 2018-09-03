@@ -38,6 +38,4 @@ interface AlarmDao {
                         ringTone: String, daysOfWeek: String, isAlarmOn: Boolean,
                         isSnoozeEnabled: Boolean, mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean,
                         thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int)
-
-
 }

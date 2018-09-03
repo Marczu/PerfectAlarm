@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.adapters.AlarmsRecyclerViewAdapter
 import com.marcinmejner.simplealarm.model.AlarmEntity
-import kotlinx.android.synthetic.main.fragment_alarms.*
 import kotlinx.android.synthetic.main.fragment_alarms.view.*
 
 class AlarmsFragment : Fragment() {

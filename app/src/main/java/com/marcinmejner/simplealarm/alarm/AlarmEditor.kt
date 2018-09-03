@@ -21,7 +21,6 @@ class AlarmEditor : AppCompatActivity() {
     lateinit var hourPicker: NumberPicker
     lateinit var minutePicker: NumberPicker
 
-
     //vars
     lateinit var editorViewModel: AlarmEditorViewModel
 
@@ -42,7 +41,6 @@ class AlarmEditor : AppCompatActivity() {
         setDataFromEditingAlarm()
         cancel()
     }
-
 
     private fun initViewModel() {
         editorViewModel = ViewModelProviders.of(this)
@@ -69,13 +67,13 @@ class AlarmEditor : AppCompatActivity() {
             val daysOfWeekText = editorViewModel.setDaysOfWeekText()
             val isAlarmEnabled = editorViewModel.isAlarmEnabled
 
-            var monday = editorViewModel.mondayToggle
-            var tuesday = editorViewModel.tuesdayToggle
-            var wednesday = editorViewModel.wednesdayToggle
-            var thursday = editorViewModel.thursdayToggle
-            var friday = editorViewModel.fridayToggle
-            var saturday = editorViewModel.saturdayToggle
-            var sunday = editorViewModel.sundayToggle
+            val monday = editorViewModel.mondayToggle
+            val tuesday = editorViewModel.tuesdayToggle
+            val wednesday = editorViewModel.wednesdayToggle
+            val thursday = editorViewModel.thursdayToggle
+            val friday = editorViewModel.fridayToggle
+            val saturday = editorViewModel.saturdayToggle
+            val sunday = editorViewModel.sundayToggle
             Log.d(TAG, "saveNewAlarm: $hourPicked : $minutesPicked")
 
             val alarmName = editorViewModel.isTitleEmpty(edit_alarm_title_et.text.toString())
