@@ -56,6 +56,9 @@ class AlarmsFragment : Fragment() {
             notesData.clear()
             notesData.addAll(it!!)
             Log.d(TAG, "initViewModel: alarm count: ${notesData.size}")
+
+            alarmsViewModel.getTurnedOnAlarms(it)
+
             notesAdapter?.notifyDataSetChanged()
         }
 
@@ -66,6 +69,7 @@ class AlarmsFragment : Fragment() {
         notesAdapter = AlarmsRecyclerViewAdapter(notesData, activity!!, alarmsViewModel)
         recyclerView.adapter = notesAdapter
     }
+
 
     /*Move to new alarm creator or editor*/
     private fun createNewAlarm(view: View){
