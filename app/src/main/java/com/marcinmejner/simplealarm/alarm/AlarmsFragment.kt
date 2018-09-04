@@ -26,6 +26,7 @@ class AlarmsFragment : Fragment() {
     var notesData = ArrayList<AlarmEntity>()
     var notesAdapter: AlarmsRecyclerViewAdapter? = null
     lateinit var alarmsViewModel: AlarmsViewModel
+    lateinit var alarmStarterSetup: AlarmStarterSetup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
