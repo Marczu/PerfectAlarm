@@ -116,7 +116,7 @@ class AlarmEditor : AppCompatActivity() {
         }
 
         /*Setting minutes values 00 to 59*/
-        val displayMinutesdValues = arrayOfNulls<String>(61)
+        val displayMinutesdValues = arrayOfNulls<String>(60)
         for (i in 0..59) {
             if (i < 10) {
                 displayMinutesdValues[i] = "0$i"

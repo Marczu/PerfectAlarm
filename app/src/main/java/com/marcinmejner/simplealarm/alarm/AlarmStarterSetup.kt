@@ -18,6 +18,8 @@ class AlarmStarterSetup {
     lateinit var alarmManager: AlarmManager
     lateinit var pi:PendingIntent
     var isTommorow: Boolean = false
+    var requestCode: Int = 0
+    var requestCodes = mutableListOf<Int>()
 
     /*search for turned on alarms and add it to list*/
     fun getTurnedOnAlarms(turnedOnAlarms: List<AlarmEntity>, context: Context) {
@@ -35,18 +37,42 @@ class AlarmStarterSetup {
             currentAlarms.add(it)
         }
 
-        setAlarm(context)
+        alarmsStarter(context)
         Log.d(TAG, "getCurrentAlarms: ${currentAlarms[0].name}")
     }
 
-    fun setAlarm(context: Context) {
 
-        val hour = currentAlarms[0].alarmHours?.toInt()
-        val minute = currentAlarms[0].alarmMinutes?.toInt()
+    /*  Iterate all alarm and set on with days alarm will repeat*/
+    fun alarmsStarter(context: Context){
+        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+
+        currentAlarms.forEach { alarm->
+
+
+
+            when {
+                alarm.mondayCheck -> setAlarm(context, 2, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.tuesdayCheck -> setAlarm(context,3, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.wednesdayCheck -> setAlarm(context,4, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.thursdayCheck -> setAlarm(context, 5, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.fridayCheck -> setAlarm(context, 6, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.saturdayCheck -> setAlarm(context, 7, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.sundayCheck -> setAlarm(context, 1, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+            }
+
+        }
+    }
+
+    fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int) {
+
+        val hour = hours
+        val minute = minutes
         Log.d(TAG, "setAlarm: hour: $hour")
         Log.d(TAG, "setAlarm: minute: $minute")
 
         val calendar = Calendar.getInstance().apply {
+            set(Calendar.DAY_OF_WEEK, weekday)
             set(Calendar.HOUR_OF_DAY, hour!!)
             set(Calendar.MINUTE, minute!!)
             set(Calendar.SECOND, 0)
@@ -60,12 +86,14 @@ class AlarmStarterSetup {
             isTommorow = false
         }
 
-        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
         val intent = Intent(context, MyBroadcastReciver::class.java)
         intent.putExtra(context.getString(R.string.intent_message), "alarm time")
         intent.action = "com.marcinmejner.alarmmanager"
 
-        pi = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        pi = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        requestCodes.add(requestCode)
+        requestCode++
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, startUpTime,
                 AlarmManager.INTERVAL_DAY, pi)

@@ -28,6 +28,7 @@ class AlarmsFragment : Fragment() {
     lateinit var alarmsViewModel: AlarmsViewModel
     lateinit var alarmStarterSetup: AlarmStarterSetup
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_alarms, container, false)
@@ -57,8 +58,8 @@ class AlarmsFragment : Fragment() {
             notesData.addAll(it!!)
             Log.d(TAG, "initViewModel: alarm count: ${notesData.size}")
 
-            AlarmStarterSetup().getTurnedOnAlarms(it, activity!!)
-//            alarmsViewModel.getTurnedOnAlarms(it)
+            alarmStarterSetup = AlarmStarterSetup()
+            alarmStarterSetup.getTurnedOnAlarms(it, activity!!)
 
             notesAdapter?.notifyDataSetChanged()
         }
