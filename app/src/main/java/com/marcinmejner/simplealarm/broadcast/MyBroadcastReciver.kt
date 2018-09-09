@@ -12,6 +12,7 @@ class MyBroadcastReciver: BroadcastReceiver(){
     private val TAG = "MyBroadcastReciver"
 
     override fun onReceive(context: Context?, intent: Intent?) {
+        Log.d(TAG, "onReceive: inside onRecive")
 
         if(intent?.action.equals("com.marcinmejner.alarmmanager")){
             var b = intent?.extras

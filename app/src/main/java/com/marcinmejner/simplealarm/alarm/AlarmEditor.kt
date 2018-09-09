@@ -115,9 +115,9 @@ class AlarmEditor : AppCompatActivity() {
             }
         }
 
-        /*Setting minutes values 00 to 60*/
+        /*Setting minutes values 00 to 59*/
         val displayMinutesdValues = arrayOfNulls<String>(61)
-        for (i in 0..60) {
+        for (i in 0..59) {
             if (i < 10) {
                 displayMinutesdValues[i] = "0$i"
             } else {
@@ -134,7 +134,7 @@ class AlarmEditor : AppCompatActivity() {
         minutePicker = numberMinutePicker
         minutePicker.displayedValues = displayMinutesdValues
         minutePicker.minValue = 0
-        minutePicker.maxValue = 60
+        minutePicker.maxValue = 59
     }
 
     /*show snoozeTimePicker fragment*/
