@@ -108,13 +108,10 @@ class DataBaseTest {
         val alarmDisabled = dao?.getAlarmById(2)?.blockingObserve()
         Log.d(TAG, "appDatabse_updateIsAlarmEnabled_succes: $alarmDisabled")
 
-//        val count = CountDownLatch(1)
-//        count.await(5000, TimeUnit.MILLISECONDS)
-
-
         Assert.assertEquals(false, alarmDisabled?.isAlarmEnabled)
     }
 
+    /*------------------------------------------------------------------*/
     private fun <T> LiveData<T>.blockingObserve(): T? {
         var value: T? = null
         val latch = CountDownLatch(1)

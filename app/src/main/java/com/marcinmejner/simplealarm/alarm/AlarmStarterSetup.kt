@@ -20,4 +20,8 @@ class AlarmStarterSetup {
         Log.d(TAG, "getCurrentAlarms: ${currentAlarms[2].name}")
     }
 
+    fun setAlarm() {
+
+    }
+
 }

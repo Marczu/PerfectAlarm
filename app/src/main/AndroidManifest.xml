@@ -21,8 +21,23 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".alarm.AlarmEditor"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".alarm.AlarmEditor"
+            android:windowSoftInputMode="stateHidden" />
+
+        <receiver
+            android:name=".broadcast.MyBroadcastReciver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.marcinmejner.alarmmanager" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".alarm.AlarmRingingScreen"></activity>
     </application>
 
 </manifest>
