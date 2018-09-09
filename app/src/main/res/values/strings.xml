@@ -11,4 +11,6 @@
     <string name="editExistingAlarm">editExistingAlarm</string>
     <string name="alarmId">alarmId</string>
     <string name="user_name">User</string>
+
+    <string name="intent_message">message</string>
 </resources>

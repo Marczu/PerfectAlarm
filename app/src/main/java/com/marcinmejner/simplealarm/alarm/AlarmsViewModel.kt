@@ -33,17 +33,17 @@ class AlarmsViewModel(application: Application) : AndroidViewModel(application) 
         repository.updateIsAlarmOnById(isAlarmOn, id)
     }
 
-    /*search for turned on alarms and add it to list*/
-    fun getTurnedOnAlarms(turnedOnAlarms: List<AlarmEntity>) {
-        val turnedOnAlarmsList = ArrayList<AlarmEntity>()
-        turnedOnAlarmsList.clear()
-
-        turnedOnAlarms.forEach {
-            if(it.isAlarmEnabled){
-                turnedOnAlarmsList.add(it)
-            }
-        }
-        AlarmStarterSetup().getCurrentAlarms(turnedOnAlarmsList)
-    }
+//    /*search for turned on alarms and add it to list*/
+//    fun getTurnedOnAlarms(turnedOnAlarms: List<AlarmEntity>) {
+//        val turnedOnAlarmsList = ArrayList<AlarmEntity>()
+//        turnedOnAlarmsList.clear()
+//
+//        turnedOnAlarms.forEach {
+//            if(it.isAlarmEnabled){
+//                turnedOnAlarmsList.add(it)
+//            }
+//        }
+//        AlarmStarterSetup().getCurrentAlarms(turnedOnAlarmsList)
+//    }
 
 }

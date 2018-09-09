@@ -20,7 +20,7 @@ class MyBroadcastReciver: BroadcastReceiver(){
         }
         else if(intent?.action.equals("android.permission.RECEIVE_BOOT_COMPLETED")){
             val alarmStarterSetup = AlarmStarterSetup()
-            alarmStarterSetup.setAlarm()
+            alarmStarterSetup.setAlarm(context!!)
         }
     }
 

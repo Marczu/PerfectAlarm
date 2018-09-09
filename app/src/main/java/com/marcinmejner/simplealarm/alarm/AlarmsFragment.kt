@@ -57,7 +57,8 @@ class AlarmsFragment : Fragment() {
             notesData.addAll(it!!)
             Log.d(TAG, "initViewModel: alarm count: ${notesData.size}")
 
-            alarmsViewModel.getTurnedOnAlarms(it)
+            AlarmStarterSetup().getTurnedOnAlarms(it, activity!!)
+//            alarmsViewModel.getTurnedOnAlarms(it)
 
             notesAdapter?.notifyDataSetChanged()
         }
