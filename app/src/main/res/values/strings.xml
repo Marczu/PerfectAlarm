@@ -13,4 +13,7 @@
     <string name="user_name">User</string>
     <string name="id">id</string>
     <string name="day_of_week">day_of_week</string>
+    <string name="alarm_ring_id">alarm_ring_id</string>
+    <string name="time_in_millis">time_in_millis</string>
+    <string name="start_today">start_today</string>
 </resources>
