@@ -49,18 +49,18 @@ class AlarmStarterSetup {
 
         currentAlarms.forEach { alarm->
             when {
-                alarm.mondayCheck -> setAlarm(context, 2, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
-                alarm.tuesdayCheck -> setAlarm(context,3, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
-                alarm.wednesdayCheck -> setAlarm(context,4, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
-                alarm.thursdayCheck -> setAlarm(context, 5, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
-                alarm.fridayCheck -> setAlarm(context, 6, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
-                alarm.saturdayCheck -> setAlarm(context, 7, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
-                alarm.sundayCheck -> setAlarm(context, 1, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt())
+                alarm.mondayCheck -> setAlarm(context, 2, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
+                alarm.tuesdayCheck -> setAlarm(context,3, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
+                alarm.wednesdayCheck -> setAlarm(context,4, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
+                alarm.thursdayCheck -> setAlarm(context, 5, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
+                alarm.fridayCheck -> setAlarm(context, 6, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
+                alarm.saturdayCheck -> setAlarm(context, 7, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
+                alarm.sundayCheck -> setAlarm(context, 1, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
             }
         }
     }
 
-    fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int) {
+    fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int, id: Int) {
 
         val hour = hours
         val minute = minutes
@@ -83,7 +83,8 @@ class AlarmStarterSetup {
         }
 
         val intent = Intent(context, MyBroadcastReciver::class.java)
-        intent.putExtra(context.getString(R.string.intent_message), "alarm time")
+        intent.putExtra(context.getString(R.string.id), id)
+        intent.putExtra(context.getString(R.string.day_of_week), weekday)
         intent.action = "com.marcinmejner.alarmmanager"
 
         pi = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
