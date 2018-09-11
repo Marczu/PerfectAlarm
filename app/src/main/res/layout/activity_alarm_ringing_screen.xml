@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alarm.AlarmRingingScreen">
+    android:background="@drawable/background">
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_stop_alarm"
+        android:layout_width="match_parent"
+        android:height="300dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:background="@drawable/red_rounded_button_alarm"
+        android:text="WYŁĄCZ ALARM"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_snooze"
+        android:layout_width="match_parent"
+        android:layout_below="@id/btn_stop_alarm"
+        android:height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:background="@drawable/green_rounded_button_snooze"
+        android:text="DRZEMKA"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

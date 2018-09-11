@@ -69,8 +69,8 @@ class AlarmStarterSetup {
 
         val calendar = Calendar.getInstance().apply {
             set(Calendar.DAY_OF_WEEK, weekday)
-            set(Calendar.HOUR_OF_DAY, hour!!)
-            set(Calendar.MINUTE, minute!!)
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute)
             set(Calendar.SECOND, 2)
         }
 
