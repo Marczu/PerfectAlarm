@@ -12,6 +12,7 @@ import android.view.Window
 import android.widget.NumberPicker
 import android.widget.TextView
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.viewModels.AlarmEditorViewModel
 import kotlinx.android.synthetic.main.fragment_dialog_snooze_time_picker.view.*
 
 

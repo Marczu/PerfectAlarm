@@ -13,6 +13,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.viewModels.AlarmEditorViewModel
 import kotlinx.android.synthetic.main.fragment_dialog_rington_chooser.view.*
 
 

@@ -6,7 +6,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.marcinmejner.simplealarm.alarm.AlarmsFragment
-import com.marcinmejner.simplealarm.Stoper.StoperFragment
+import com.marcinmejner.simplealarm.stoper.StoperFragment
 import kotlinx.android.synthetic.main.activity_main_screen.*
 
 class MainScreenContainer : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {

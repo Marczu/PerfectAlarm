@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.view.View
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.alarm.AlarmEditor
-import com.marcinmejner.simplealarm.alarm.AlarmsViewModel
+import com.marcinmejner.simplealarm.viewModels.AlarmsViewModel
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import kotlinx.android.synthetic.main.alarm_list_item.view.*
 

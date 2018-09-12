@@ -1,4 +1,4 @@
-package com.marcinmejner.simplealarm.Stoper
+package com.marcinmejner.simplealarm.stoper
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

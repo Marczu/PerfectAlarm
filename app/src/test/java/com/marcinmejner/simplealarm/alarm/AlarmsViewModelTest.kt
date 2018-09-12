@@ -1,5 +1,6 @@
 package com.marcinmejner.simplealarm.alarm
 
+import com.marcinmejner.simplealarm.viewModels.AlarmsViewModel
 import org.junit.Before
 
 class AlarmsViewModelTest{

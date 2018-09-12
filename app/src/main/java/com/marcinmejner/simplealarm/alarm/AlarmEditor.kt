@@ -2,17 +2,14 @@ package com.marcinmejner.simplealarm.alarm
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.arch.persistence.room.Update
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
-import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
+import com.marcinmejner.simplealarm.viewModels.AlarmEditorViewModel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
 
 class AlarmEditor : AppCompatActivity() {
     private val TAG = "AlarmEditor"
