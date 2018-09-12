@@ -17,7 +17,7 @@ class MyBroadcastReciver : BroadcastReceiver() {
 
         if (intent?.action.equals("com.marcinmejner.alarmmanager")) {
             var extras = intent?.extras
-            val id = extras?.getInt("id")
+            val id = extras?.getInt(context?.getString(R.string.id))
             Log.d(TAG, "onReceive: alarm started, id: $id")
             initAlarmActivity(context, id)
         } else if (intent?.action.equals("android.permission.RECEIVE_BOOT_COMPLETED")) {
