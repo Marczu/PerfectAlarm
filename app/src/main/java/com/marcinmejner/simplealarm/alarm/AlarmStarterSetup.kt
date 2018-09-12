@@ -57,11 +57,10 @@ class AlarmStarterSetup {
         }
     }
 
-
+    /*Set hour, minutes, days on with alarm will start, and let alarm manager send pending intent to broadcastReciver   */
     fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int, id: Int) {
         val hour = hours
         val minute = minutes
-        Log.d(TAG, "setAlarm: hour: $hour , minuta $minute")
 
         val calendar = Calendar.getInstance().apply {
             set(Calendar.DAY_OF_WEEK, weekday)
@@ -78,14 +77,12 @@ class AlarmStarterSetup {
         val calendarTest = Calendar.getInstance()
         calendarTest.timeInMillis = startUpTime
 
-        val mMinute = calendarTest.get(Calendar.MINUTE)
-        val mhour = calendarTest.get(Calendar.HOUR)
-        val mMonth = calendarTest.get(Calendar.MONTH)
-        val mDay = calendarTest.get(Calendar.DAY_OF_MONTH)
-        Log.d(TAG, "setAlarm: minuta: $mMinute")
-        Log.d(TAG, "setAlarm: godzina: $mhour")
-        Log.d(TAG, "setAlarm: miesiac: $mMonth")
-        Log.d(TAG, "setAlarm: dzien miesiaca: $mDay")
+        Log.d(TAG, "setAlarm ALARM WILL START:  Minute: ${calendarTest.get(Calendar.MINUTE)} : " +
+                "Hour: ${calendarTest.get(Calendar.HOUR)} : " +
+                "Day of month: ${calendarTest.get(Calendar.DAY_OF_MONTH)}")
+//        Log.d(TAG, "setAlarm: godzina: ${calendarTest.get(Calendar.HOUR)}")
+//        Log.d(TAG, "setAlarm: miesiac: ${calendarTest.get(Calendar.MONTH)}")
+//        Log.d(TAG, "setAlarm: dzien miesiaca: ${calendarTest.get(Calendar.DAY_OF_MONTH)}")
 
 
         val intent = Intent(context, MyBroadcastReciver::class.java)
