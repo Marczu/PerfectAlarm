@@ -17,7 +17,6 @@ class AlarmStarterSetup {
     var currentAlarms: MutableList<AlarmEntity> = ArrayList()
     lateinit var alarmManager: AlarmManager
     lateinit var pi: PendingIntent
-    var startToday: Boolean = false
     var requestCode: Int = 0
     var pendingIntentsList = mutableListOf<PendingIntent>()
 
@@ -61,6 +60,7 @@ class AlarmStarterSetup {
     fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int, id: Int) {
         val hour = hours
         val minute = minutes
+        Log.d(TAG, "setAlarm: z room: godzina $hour minuta $minute")
 
         val calendar = Calendar.getInstance().apply {
             set(Calendar.DAY_OF_WEEK, weekday)
@@ -68,22 +68,18 @@ class AlarmStarterSetup {
             set(Calendar.MINUTE, minute)
             set(Calendar.SECOND, 15)
         }
-
         var startUpTime = calendar.timeInMillis
         if (System.currentTimeMillis() > startUpTime) {
             startUpTime += 7 * 24 * 60 * 60 * 1000
         }
 
+
         val calendarTest = Calendar.getInstance()
         calendarTest.timeInMillis = startUpTime
 
         Log.d(TAG, "setAlarm ALARM WILL START:  Minute: ${calendarTest.get(Calendar.MINUTE)} : " +
-                "Hour: ${calendarTest.get(Calendar.HOUR)} : " +
+                "Hour: ${calendarTest.get(Calendar.HOUR_OF_DAY)} : " +
                 "Day of month: ${calendarTest.get(Calendar.DAY_OF_MONTH)}")
-//        Log.d(TAG, "setAlarm: godzina: ${calendarTest.get(Calendar.HOUR)}")
-//        Log.d(TAG, "setAlarm: miesiac: ${calendarTest.get(Calendar.MONTH)}")
-//        Log.d(TAG, "setAlarm: dzien miesiaca: ${calendarTest.get(Calendar.DAY_OF_MONTH)}")
-
 
         val intent = Intent(context, MyBroadcastReciver::class.java)
         intent.putExtra(context.getString(R.string.id), id)
@@ -96,5 +92,4 @@ class AlarmStarterSetup {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, startUpTime,
                 AlarmManager.INTERVAL_DAY * 7, pi)
     }
-
 }

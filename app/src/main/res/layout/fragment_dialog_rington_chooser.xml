@@ -29,7 +29,7 @@
                     android:id="@+id/alarm1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="alarm_1"
+                    android:text="Classic Alarm 1"
                     android:checked="true"
                     android:textColor="@color/white"
                     android:layout_centerHorizontal="true"/>
@@ -40,9 +40,71 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="alarm_2"
+                    android:text="Classic Alarm 2"
                     android:textColor="@color/white"
                     android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm3"
+                    android:layout_below="@+id/alarm2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Old Fashioned School Bell"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm4"
+                    android:layout_below="@+id/alarm3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Foghorn"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm5"
+                    android:layout_below="@+id/alarm4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Alien Siren"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm6"
+                    android:layout_below="@+id/alarm5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Rooster"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm7"
+                    android:layout_below="@+id/alarm6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Baby Music Box"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+                <RadioButton
+                    android:id="@+id/alarm8"
+                    android:layout_below="@+id/alarm7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Pacman"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"/>
+
+
 
             </RadioGroup>
 

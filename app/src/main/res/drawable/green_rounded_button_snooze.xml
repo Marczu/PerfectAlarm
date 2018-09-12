@@ -10,20 +10,20 @@
                 android:color="@color/primary_light"
                 android:width="1dp"/>
             <corners
-                android:radius="50dp"/>
+                android:radius="10dp"/>
         </shape>
     </item>
 
     <item>
         <shape>
             <solid
-                android:color="#709ccc65" />
+                android:color="#309ccc65" />
 
             <stroke
-                android:color="@color/colorAccent"
+                android:color="@color/chat_light_grey"
                 android:width="1dp"/>
             <corners
-                android:radius="50dp"/>
+                android:radius="10dp"/>
         </shape>
     </item>
 

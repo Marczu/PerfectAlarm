@@ -81,6 +81,7 @@ class AlarmRingtoneChooserDialogFragment : DialogFragment() {
 
             player.stop()
             val ringtoneChoosen = (view.findViewById(radioGroup.checkedRadioButtonId) as RadioButton).text.toString()
+                    .toLowerCase().replace(" ", "_")
             val resID = resources.getIdentifier(ringtoneChoosen,
                     "raw", activity?.packageName)
             player = MediaPlayer.create(activity, resID)

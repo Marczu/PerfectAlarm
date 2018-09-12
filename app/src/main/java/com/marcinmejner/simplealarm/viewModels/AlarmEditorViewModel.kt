@@ -27,7 +27,7 @@ class AlarmEditorViewModel(application: Application) : AndroidViewModel(applicat
 
     init {
         snoozeTime.value = 10
-        ringtone.value = "alarm_1"
+        ringtone.value = "Classic Alarm 1"
         alarms = repository.alarms
     }
 

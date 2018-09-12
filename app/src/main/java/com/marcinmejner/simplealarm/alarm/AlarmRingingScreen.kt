@@ -5,10 +5,10 @@ import android.arch.lifecycle.ViewModelProviders
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Html
 import android.util.Log
 import android.view.WindowManager
 import com.marcinmejner.simplealarm.R
-import com.marcinmejner.simplealarm.R.string.id
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import com.marcinmejner.simplealarm.viewModels.AlarmRingingViewModel
 import kotlinx.android.synthetic.main.activity_alarm_ringing_screen.*
@@ -29,6 +29,7 @@ class AlarmRingingScreen : AppCompatActivity() {
     private fun init() {
         initSetupScreen()
         initAlarmViewModel()
+        getCurrentTimeAndDay()
         getAlarm()
         stopAlarm()
     }
@@ -69,8 +70,9 @@ class AlarmRingingScreen : AppCompatActivity() {
         }
     }
 
-    fun startAlarm(){
+    private fun startAlarm(){
         val choosenRingtone = alarmRingingViewModel.currentAlarm.value?.ringTone
+                ?.toLowerCase()?.replace(" ", "_")
         Log.d(TAG, "startAlarm: $choosenRingtone")
         val resID = resources.getIdentifier(choosenRingtone,
                 "raw", this.packageName)
@@ -80,10 +82,14 @@ class AlarmRingingScreen : AppCompatActivity() {
         player.start()
     }
 
-    fun stopAlarm(){
+    private fun stopAlarm(){
         btn_stop_alarm.setOnClickListener {
             player.stop()
             finish()
         }
+    }
+
+    private fun getCurrentTimeAndDay(){
+        alarm_ringing_hour.text = alarmRingingViewModel.getCurrentHour()
     }
 }
