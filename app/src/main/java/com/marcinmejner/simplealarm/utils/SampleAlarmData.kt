@@ -14,4 +14,11 @@ class SampleAlarmData {
         return alarms
     }
 
+    fun insertFirstAlarm(): AlarmEntity {
+        val firstAlarm = AlarmEntity(alarmMinutes = "30", alarmHours = "7", snoozeMinutes = 10, name = "Weekendowy budzik", daysOfWeek = "WEEKEND",
+                mondayCheck = false, tuesdayCheck = false, wednesdayCheck = false, thursdayCheck = false, fridayCheck = false, saturdayCheck = true, sundayCheck = true)
+
+        return firstAlarm
+    }
+
 }
