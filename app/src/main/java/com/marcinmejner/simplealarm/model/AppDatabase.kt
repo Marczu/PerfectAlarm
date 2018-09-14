@@ -1,10 +1,13 @@
 package com.marcinmejner.simplealarm.model
 
+import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
+import com.marcinmejner.simplealarm.utils.SampleAlarmData
+import kotlinx.coroutines.experimental.launch
 
 @Database(entities = [(AlarmEntity::class)], version = 1)
 @TypeConverters(DateConverter::class)
@@ -22,6 +25,14 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                             AppDatabase::class.java, DATABASE_NAME)
+                            .addCallback(object : RoomDatabase.Callback() {
+                                override fun onCreate(db: SupportSQLiteDatabase) {
+                                    super.onCreate(db)
+                                    launch {
+                                        getInstance(context).alarmeDao().insertAlarm(SampleAlarmData().insertFirstAlarm())
+                                    }
+                                }
+                            })
                             .build()
                 }
             }
@@ -33,3 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
+
+
+

@@ -20,5 +20,4 @@ class SampleAlarmData {
 
         return firstAlarm
     }
-
 }
