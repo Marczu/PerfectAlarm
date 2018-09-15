@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.R.string.id
 import com.marcinmejner.simplealarm.broadcast.MyBroadcastReciver
 import com.marcinmejner.simplealarm.model.AlarmEntity
+import java.time.DayOfWeek
 import java.util.*
 
 class AlarmStarterSetup {
@@ -57,7 +59,7 @@ class AlarmStarterSetup {
     }
 
     /*Set hour, minutes, days on with alarm will start, and let alarm manager send pending intent to broadcastReciver   */
-    fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int, id: Int) {
+    private fun setAlarm(context: Context, weekday: Int, hours: Int, minutes: Int, id: Int) {
         val hour = hours
         val minute = minutes
         Log.d(TAG, "setAlarm: z room: godzina $hour minuta $minute")
@@ -72,7 +74,6 @@ class AlarmStarterSetup {
         if (System.currentTimeMillis() > startUpTime) {
             startUpTime += 7 * 24 * 60 * 60 * 1000
         }
-
 
         val calendarTest = Calendar.getInstance()
         calendarTest.timeInMillis = startUpTime
@@ -92,4 +93,26 @@ class AlarmStarterSetup {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, startUpTime,
                 AlarmManager.INTERVAL_DAY * 7, pi)
     }
+
+    fun setSnooze(context: Context, snoozeMinutes: Int, alarmId: Int){
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.DAY_OF_WEEK, Calendar.DAY_OF_WEEK)
+            set(Calendar.HOUR_OF_DAY, Calendar.HOUR_OF_DAY)
+            set(Calendar.MINUTE, Calendar.MINUTE + snoozeMinutes)
+        }
+        val minutesinMillis = snoozeMinutes*60000
+        Log.d(TAG, "setSnooze: snooze minutes: $snoozeMinutes")
+
+        val startUpTime = System.currentTimeMillis() + minutesinMillis
+
+        val intent = Intent(context, MyBroadcastReciver::class.java)
+        intent.putExtra(context.getString(R.string.id), alarmId)
+        intent.action = "com.marcinmejner.alarmmanager"
+
+        val snoozePi = PendingIntent.getBroadcast(context, 999, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val snoozeAlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        snoozeAlarmManager.set(AlarmManager.RTC_WAKEUP, startUpTime, snoozePi)
+    }
 }
+

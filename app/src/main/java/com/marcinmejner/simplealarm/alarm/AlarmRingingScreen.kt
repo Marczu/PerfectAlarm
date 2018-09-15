@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.text.Html
 import android.util.Log
 import android.view.WindowManager
 import com.marcinmejner.simplealarm.R
@@ -64,6 +63,7 @@ class AlarmRingingScreen : AppCompatActivity() {
                         alarmRingingViewModel.currentAlarm.value = it
                         Log.d(TAG, "getAlarm: ${it.ringTone}")
                         startAlarm()
+                        initSnooze(it)
                     }
                 }
             })
@@ -82,6 +82,14 @@ class AlarmRingingScreen : AppCompatActivity() {
         player.start()
     }
 
+    private fun initSnooze(alarm: AlarmEntity) {
+        btn_snooze.setOnClickListener {
+            AlarmStarterSetup().setSnooze(this, alarm.snoozeMinutes, alarm.id)
+            player.stop()
+            finish()
+        }
+    }
+
     private fun stopAlarm(){
         btn_stop_alarm.setOnClickListener {
             player.stop()
@@ -91,5 +99,10 @@ class AlarmRingingScreen : AppCompatActivity() {
 
     private fun getCurrentTimeAndDay(){
         alarm_ringing_hour.text = alarmRingingViewModel.getCurrentHour()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player.stop()
     }
 }
