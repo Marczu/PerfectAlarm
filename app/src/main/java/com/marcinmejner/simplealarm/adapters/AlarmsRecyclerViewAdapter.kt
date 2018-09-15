@@ -64,6 +64,9 @@ class AlarmsRecyclerViewAdapter(val alarmsList: ArrayList<AlarmEntity>, val cont
     /*Check if snooze is enabled, if no then disable snooze view*/
     fun isSnoozeEnabled(holder: ViewHolder, position: Int){
         if(alarmsList[position].isSnoozeEnabled){
+            holder.snoozeTv.visibility = View.VISIBLE
+            holder.alarmSnoozeTime.visibility = View.VISIBLE
+        }else{
             holder.snoozeTv.visibility = View.GONE
             holder.alarmSnoozeTime.visibility = View.GONE
         }

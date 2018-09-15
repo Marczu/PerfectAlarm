@@ -6,10 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.marcinmejner.simplealarm.R
-import com.marcinmejner.simplealarm.R.string.id
 import com.marcinmejner.simplealarm.broadcast.MyBroadcastReciver
 import com.marcinmejner.simplealarm.model.AlarmEntity
-import java.time.DayOfWeek
 import java.util.*
 
 class AlarmStarterSetup {
@@ -95,15 +93,10 @@ class AlarmStarterSetup {
     }
 
     fun setSnooze(context: Context, snoozeMinutes: Int, alarmId: Int){
-        val calendar = Calendar.getInstance().apply {
-            set(Calendar.DAY_OF_WEEK, Calendar.DAY_OF_WEEK)
-            set(Calendar.HOUR_OF_DAY, Calendar.HOUR_OF_DAY)
-            set(Calendar.MINUTE, Calendar.MINUTE + snoozeMinutes)
-        }
-        val minutesinMillis = snoozeMinutes*60000
         Log.d(TAG, "setSnooze: snooze minutes: $snoozeMinutes")
 
-        val startUpTime = System.currentTimeMillis() + minutesinMillis
+        val minutesInMillis = snoozeMinutes*60000
+        val startUpTime = System.currentTimeMillis() + minutesInMillis
 
         val intent = Intent(context, MyBroadcastReciver::class.java)
         intent.putExtra(context.getString(R.string.id), alarmId)

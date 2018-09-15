@@ -13,7 +13,7 @@ data class AlarmEntity(
         var ringTone: String = "alarm_1",
         var daysOfWeek: String = "",
         var isAlarmEnabled: Boolean = true,
-        var isSnoozeEnabled: Boolean = false,
+        var isSnoozeEnabled: Boolean = true,
 
         var mondayCheck: Boolean = true,
         var tuesdayCheck: Boolean = true,

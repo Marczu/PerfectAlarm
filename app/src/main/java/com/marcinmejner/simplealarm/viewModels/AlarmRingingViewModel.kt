@@ -4,6 +4,9 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
+import android.media.MediaPlayer
+import android.util.Log
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import com.marcinmejner.simplealarm.model.AppRepository
 import java.text.SimpleDateFormat
@@ -12,6 +15,7 @@ import java.util.*
 class AlarmRingingViewModel(application: Application): AndroidViewModel(application) {
     private val TAG = "AlarmRingingViewModel"
 
+    lateinit var player: MediaPlayer
     var repository: AppRepository = AppRepository.getInstance(application.applicationContext)
     var alarms: LiveData<List<AlarmEntity>>
     var currentAlarm: MutableLiveData<AlarmEntity> = MutableLiveData()
@@ -43,5 +47,4 @@ class AlarmRingingViewModel(application: Application): AndroidViewModel(applicat
 
         return "Jest $dayOfTheWeek, godzina: $hoursAfter:$minutesAfter"
     }
-
 }
