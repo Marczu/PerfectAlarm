@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
@@ -63,7 +64,8 @@ class AlarmRingingScreen : AppCompatActivity() {
                         alarmRingingViewModel.currentAlarm.value = it
                         Log.d(TAG, "getAlarm: ${it.ringTone}")
                         startAlarm()
-                        initSnooze(it)
+//                        initSnooze(it)
+                        checkIfSnoozeIsEnabled(it)
                     }
                 }
             })
@@ -96,6 +98,13 @@ class AlarmRingingScreen : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun checkIfSnoozeIsEnabled(alarm: AlarmEntity) {
+        if(!alarm.isSnoozeEnabled) btn_snooze.visibility = View.GONE
+        else initSnooze(alarm)
+    }
+
+
 
     private fun getCurrentTimeAndDay(){
         alarm_ringing_hour.text = alarmRingingViewModel.getCurrentHour()

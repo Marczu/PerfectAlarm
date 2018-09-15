@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.adapters.AlarmsRecyclerViewAdapter
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import com.marcinmejner.simplealarm.viewModels.AlarmEditorViewModel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*
@@ -63,6 +64,7 @@ class AlarmEditor : AppCompatActivity() {
             val ringtone = editorViewModel.ringtone.value
             val daysOfWeekText = editorViewModel.setDaysOfWeekText()
             val isAlarmEnabled = editorViewModel.isAlarmEnabled
+            val isSnoozeEnabled = alarm_snooze_switch.isChecked
 
             val monday = editorViewModel.mondayToggle
             val tuesday = editorViewModel.tuesdayToggle
@@ -78,7 +80,7 @@ class AlarmEditor : AppCompatActivity() {
 
             val newAlarm = AlarmEntity(alarmMinutes = minutesPicked, alarmHours = hourPicked,
                     name = alarmName, snoozeMinutes = snoozeMinutes!!, ringTone = ringtone!!,
-                    daysOfWeek = daysOfWeekText, isAlarmEnabled = isAlarmEnabled, mondayCheck = monday,
+                    daysOfWeek = daysOfWeekText, isAlarmEnabled = isAlarmEnabled, isSnoozeEnabled = isSnoozeEnabled, mondayCheck = monday,
                     tuesdayCheck = tuesday, wednesdayCheck = wednesday, thursdayCheck = thursday,
                     fridayCheck = friday, saturdayCheck = saturday, sundayCheck = sunday)
 
@@ -213,6 +215,10 @@ class AlarmEditor : AppCompatActivity() {
                 hourPicker.value = it?.alarmHours?.toInt()!!
                 minutePicker.value = it.alarmMinutes?.toInt()!!
 
+                alarm_snooze_switch.isChecked = it.isSnoozeEnabled
+
+
+
                 edit_alarm_title_et.setText(it.name)
                 editorViewModel.snoozeTime.value = it.snoozeMinutes
                 editorViewModel.isAlarmEnabled = it.isAlarmEnabled
@@ -241,6 +247,18 @@ class AlarmEditor : AppCompatActivity() {
             })
         }
     }
+
+//    fun alarmSnoozeSwitch() {
+//        alarm_snooze_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+//            if (isChecked) {
+//                editorViewModel.alarms
+////            } else {
+////                updateIsAlarmOn(false, position)
+////                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
+////            }
+//            }
+//        }
+//    }
 
     private fun cancel() {
         edit_cancel_btn.setOnClickListener {
