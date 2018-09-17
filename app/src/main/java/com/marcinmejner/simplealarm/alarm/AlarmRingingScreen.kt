@@ -64,7 +64,6 @@ class AlarmRingingScreen : AppCompatActivity() {
                         alarmRingingViewModel.currentAlarm.value = it
                         Log.d(TAG, "getAlarm: ${it.ringTone}")
                         startAlarm()
-//                        initSnooze(it)
                         checkIfSnoozeIsEnabled(it)
                     }
                 }
@@ -104,9 +103,8 @@ class AlarmRingingScreen : AppCompatActivity() {
         else initSnooze(alarm)
     }
 
-
-
     private fun getCurrentTimeAndDay(){
+        alarm_ringing_day.text = alarmRingingViewModel.getCurrentDay()
         alarm_ringing_hour.text = alarmRingingViewModel.getCurrentHour()
     }
 

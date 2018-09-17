@@ -66,7 +66,6 @@ class AlarmStarterSetup {
             set(Calendar.DAY_OF_WEEK, weekday)
             set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
-            set(Calendar.SECOND, 15)
         }
         var startUpTime = calendar.timeInMillis
         if (System.currentTimeMillis() > startUpTime) {

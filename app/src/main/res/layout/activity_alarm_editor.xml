@@ -112,13 +112,25 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/repeat_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/pickerLinLayout"
+                    android:text="Powtórz w dni tygodnia:"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"/>
+
+
+
                 <!--Dayos od week toggle buttons-->
                 <LinearLayout
                     android:id="@+id/days_of_week_lin_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_below="@id/pickerLinLayout">
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/repeat_tv">
 
 
                     <ToggleButton
@@ -238,7 +250,7 @@
                     android:id="@+id/edit_alarm_title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"
                     android:textSize="18sp"

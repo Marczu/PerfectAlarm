@@ -24,6 +24,30 @@ class AlarmRingingViewModel(application: Application): AndroidViewModel(applicat
         alarms = repository.alarms
     }
 
+    fun getCurrentDay(): String {
+        val sdf = SimpleDateFormat("EEEE")
+        val d = Date()
+        val dayOfTheWeek = sdf.format(d)
+
+        val calendar = Calendar.getInstance()
+        val hours = calendar.get(Calendar.HOUR_OF_DAY)
+        val minutes = calendar.get(Calendar.MINUTE)
+
+        val hoursAfter = if(hours < 10){
+            "0$hours"
+        }else{
+            "$hours"
+        }
+
+        val minutesAfter = if(minutes < 10){
+            "0$minutes"
+        }else{
+            "$minutes"
+        }
+
+        return "Mamy $dayOfTheWeek"
+    }
+
     fun getCurrentHour(): String {
         val sdf = SimpleDateFormat("EEEE")
         val d = Date()
@@ -45,6 +69,6 @@ class AlarmRingingViewModel(application: Application): AndroidViewModel(applicat
             "$minutes"
         }
 
-        return "Jest $dayOfTheWeek, godzina: $hoursAfter:$minutesAfter"
+        return "$hoursAfter:$minutesAfter"
     }
 }

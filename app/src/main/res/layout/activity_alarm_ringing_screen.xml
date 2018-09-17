@@ -6,47 +6,84 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <TextView
-        android:id="@+id/alarm_ringing_hour"
+
+    <RelativeLayout
+        android:id="@+id/relLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/grey"
-        android:textSize="18sp"
-        android:text="Jest godzina:"/>
+        >
+
+        <TextView
+            android:id="@+id/alarm_ringing_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato"
+            tools:text="Mamy"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/alarm_ringing_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/alarm_ringing_tv"
+            android:fontFamily="@font/lato"
+            tools:text="Wtorek:"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+             />
+
+        <TextView
+            android:id="@+id/alarm_ringing_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alarm_ringing_tv"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/lato_thin"
+            tools:text="16:00"
+            android:textColor="@color/white"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
+        </RelativeLayout>
+
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_stop_alarm"
         android:layout_width="match_parent"
-        android:height="225dp"
-        android:layout_below="@+id/alarm_ringing_hour"
-        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relLayout1"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:textSize="20dp"
-        android:drawableStart="@drawable/ic_alarm_off"
-        android:padding="50dp"
-        android:textColor="#FFF"
+        android:layout_marginTop="30dp"
+        android:height="225dp"
         android:background="@drawable/red_rounded_button_alarm"
+        android:drawableStart="@drawable/ic_alarm_off"
+        android:fontFamily="@font/lato_thin"
+        android:padding="50dp"
         android:text="WYŁĄCZ ALARM"
-        android:layout_height="wrap_content" />
+        android:textColor="#FFF"
+        android:textSize="20dp" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_snooze"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/btn_stop_alarm"
-        android:height="150dp"
-        android:drawableStart="@drawable/ic_snooze"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:textSize="20dp"
-        android:textColor="#FFF"
+        android:layout_marginTop="30dp"
+        android:height="150dp"
         android:background="@drawable/green_rounded_button_snooze"
+        android:drawableStart="@drawable/ic_snooze"
+        android:fontFamily="@font/lato_thin"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:text="DRZEMKA"
-        android:layout_height="wrap_content" />
+        android:textColor="#FFF"
+        android:textSize="20dp" />
 
 </RelativeLayout>
