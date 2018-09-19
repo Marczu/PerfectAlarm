@@ -16,37 +16,31 @@
         >
 
         <TextView
-            android:id="@+id/alarm_ringing_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
-            tools:text="Mamy"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
-
-        <TextView
             android:id="@+id/alarm_ringing_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/alarm_ringing_tv"
             android:fontFamily="@font/lato"
-            tools:text="Wtorek:"
+            tools:text="Jest wtorek"
             android:textColor="@color/white"
             android:textSize="22sp"
              />
 
-        <TextView
+        <TextClock
             android:id="@+id/alarm_ringing_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/alarm_ringing_tv"
+            android:layout_below="@+id/alarm_ringing_day"
+            android:fontFamily="@font/lato"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/lato_thin"
-            tools:text="16:00"
+            tools:text="18:00"
+            android:format12Hour="H:mm"
+            android:format24Hour="H:mm"
+            android:timeZone="GMT+00:00"
+            android:textSize="55dp"
             android:textColor="@color/white"
-            android:textSize="45sp"
-            android:textStyle="bold" />
+            android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
         </RelativeLayout>
 
@@ -54,15 +48,14 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_stop_alarm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/relLayout1"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="30dp"
-        android:height="225dp"
         android:background="@drawable/red_rounded_button_alarm"
         android:drawableStart="@drawable/ic_alarm_off"
-        android:fontFamily="@font/lato_thin"
+        android:fontFamily="@font/lato"
         android:padding="50dp"
         android:text="WYŁĄCZ ALARM"
         android:textColor="#FFF"
@@ -79,7 +72,7 @@
         android:height="150dp"
         android:background="@drawable/green_rounded_button_snooze"
         android:drawableStart="@drawable/ic_snooze"
-        android:fontFamily="@font/lato_thin"
+        android:fontFamily="@font/lato"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:text="DRZEMKA"
