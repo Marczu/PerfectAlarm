@@ -45,7 +45,7 @@ class AlarmRingingViewModel(application: Application): AndroidViewModel(applicat
             "$minutes"
         }
 
-        return "Mamy $dayOfTheWeek"
+        return "Jest $dayOfTheWeek"
     }
 
     fun getCurrentHour(): String {
