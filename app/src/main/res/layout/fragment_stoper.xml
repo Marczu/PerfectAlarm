@@ -3,19 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".stoper.StoperFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_stoper_start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_stop_alarm"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/green_rounded_button_snooze"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/lato"
+
+            android:text="START"
+            android:textColor="#FFF"
+            android:textSize="20dp" />
+
         <TextView
+            android:id="@+id/stoper_countdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/btn_stoper_start"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
             android:text="Stoper fragment"
             android:textColor="#FFF"
-            android:textSize="20sp" />
+            tools:text="00:00:00"
+            android:textSize="50sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_stoper_stop"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stoper_countdown"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/red_rounded_button_alarm"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/lato"
+
+            android:text="STOP"
+            android:textColor="#FFF"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/add_new_alarm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:background="@drawable/light_white_rounded_button"
+            android:text="Dodaj nowy stoper"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

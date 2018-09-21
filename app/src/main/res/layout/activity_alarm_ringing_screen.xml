@@ -37,7 +37,6 @@
             tools:text="18:00"
             android:format12Hour="H:mm"
             android:format24Hour="H:mm"
-            android:timeZone="GMT+00:00"
             android:textSize="55dp"
             android:textColor="@color/white"
             android:textAppearance="@android:style/TextAppearance.Material.Small" />
