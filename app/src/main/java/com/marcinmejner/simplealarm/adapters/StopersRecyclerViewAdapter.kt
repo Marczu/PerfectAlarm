@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.model.AlarmEntity
-import com.marcinmejner.simplealarm.stoper.StoperViewModel
+import com.marcinmejner.simplealarm.viewModels.StoperViewModel
 import kotlinx.android.synthetic.main.stoper_list_item.view.*
 
 

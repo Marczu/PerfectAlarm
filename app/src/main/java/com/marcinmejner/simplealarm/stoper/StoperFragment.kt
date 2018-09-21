@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.marcinmejner.simplealarm.R
+import com.marcinmejner.simplealarm.viewModels.StoperViewModel
 
 class StoperFragment : Fragment() {
     private val TAG = "StoperFragment"
