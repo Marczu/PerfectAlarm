@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background">
 
     <RelativeLayout
@@ -11,22 +12,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/stoper_countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="00:00:00"
-        android:textColor="#FFF"
-        android:textSize="50sp" />
+
+        <RelativeLayout
+            android:id="@+id/stoperTimeRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/stoper_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:text="00:00:00"
+                android:textColor="#FFF"
+                android:textSize="30sp" />
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                android:id="@+id/stoperProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_centerInParent="true"
+                app:mpb_progressStyle="circular"
+                />
+
+        </RelativeLayout>
+
 
     <!--Button stop-->
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_stoper_stop"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@id/stoper_countdown"
+        android:layout_below="@id/stoperTimeRelLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -46,7 +63,7 @@
             android:id="@+id/btn_stoper_pause"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_below="@id/stoper_countdown"
+            android:layout_below="@id/stoperTimeRelLayout"
             android:layout_centerHorizontal="true"
             android:drawableStart="@drawable/ic_pause"
             android:paddingLeft="10dp"
@@ -65,7 +82,7 @@
         android:id="@+id/btn_stoper_start"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@id/stoper_countdown"
+        android:layout_below="@id/stoperTimeRelLayout"
         android:layout_centerHorizontal="true"
         android:drawableStart="@drawable/ic_play"
         android:paddingLeft="10dp"
