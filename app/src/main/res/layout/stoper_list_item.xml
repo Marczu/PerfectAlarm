@@ -5,7 +5,7 @@
     android:background="@drawable/background">
 
     <RelativeLayout
-        android:id="@+id/alarm_item_rel_layout"
+        android:id="@+id/stoper_item_rel_layout"
         android:background="@drawable/light_white_rounded_items_stoper"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
