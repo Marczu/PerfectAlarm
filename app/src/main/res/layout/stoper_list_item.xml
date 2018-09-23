@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background">
+    >
 
     <RelativeLayout
         android:id="@+id/stoper_item_rel_layout"
@@ -17,6 +17,8 @@
             android:id="@+id/stoperTimeRelLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <!--Stoper Numbers-->
             <TextView
                 android:id="@+id/stoper_countdown"
                 android:layout_width="wrap_content"
@@ -27,8 +29,9 @@
                 android:textColor="#FFF"
                 android:textSize="30sp" />
 
+            <!--ProgressCountdown-->
             <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-                android:id="@+id/stoperProgressCountdown"
+                android:id="@+id/stoper_progress_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="220dp"

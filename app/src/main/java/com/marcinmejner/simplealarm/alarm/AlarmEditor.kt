@@ -57,7 +57,6 @@ class AlarmEditor : AppCompatActivity() {
     /*Taking data from widgets and saveing it in databse*/
     private fun saveNewAlarm() {
         edit_save_btn.setOnClickListener {
-
             val hourPicked = hourPicker.value.toString()
             val minutesPicked = minutePicker.value.toString()
             val snoozeMinutes = editorViewModel.snoozeTime.value
@@ -157,7 +156,6 @@ class AlarmEditor : AppCompatActivity() {
     }
 
     private fun daysOfWeekChooser() {
-
         poniedzialek_toggle.setOnCheckedChangeListener { buttonView, isChecked ->
             editorViewModel.mondayToggle = isChecked
             Log.d(TAG, "daysOfWeekChooser: monday ${editorViewModel.mondayToggle}")
@@ -217,8 +215,6 @@ class AlarmEditor : AppCompatActivity() {
 
                 alarm_snooze_switch.isChecked = it.isSnoozeEnabled
 
-
-
                 edit_alarm_title_et.setText(it.name)
                 editorViewModel.snoozeTime.value = it.snoozeMinutes
                 editorViewModel.isAlarmEnabled = it.isAlarmEnabled
@@ -247,18 +243,6 @@ class AlarmEditor : AppCompatActivity() {
             })
         }
     }
-
-//    fun alarmSnoozeSwitch() {
-//        alarm_snooze_switch.setOnCheckedChangeListener { buttonView, isChecked ->
-//            if (isChecked) {
-//                editorViewModel.alarms
-////            } else {
-////                updateIsAlarmOn(false, position)
-////                Log.d(TAG, "onBindViewHolder: switch ON: ${alarmsList[position].isAlarmEnabled}")
-////            }
-//            }
-//        }
-//    }
 
     private fun cancel() {
         edit_cancel_btn.setOnClickListener {
