@@ -6,6 +6,8 @@ import android.arch.persistence.room.*
 @Dao
 interface AlarmDao {
 
+    /*---------------------------Alarms DB-----------------------------------------------------*/
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAlarm(alarmEntity: AlarmEntity)
 
@@ -38,4 +40,9 @@ interface AlarmDao {
                         ringTone: String, daysOfWeek: String, isAlarmOn: Boolean,
                         isSnoozeEnabled: Boolean, mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean,
                         thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int)
+
+    /*---------------------------Stopers DB-----------------------------------------------------*/
+
+    @Query("SELECT * FROM stoper")
+    fun getallStopers() : LiveData<List<StoperEntity>>
 }

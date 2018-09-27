@@ -66,38 +66,55 @@ class StoperFragment : Fragment() {
     }
 
     private fun initStoper() {
-        startTimer()
-        pauseTimer()
-        stopTimer()
+        startButton()
+        pauseButton()
+        stopButton()
     }
 
-    private fun startTimer() {
+    private fun startButton() {
         btn_stoper_start.setOnClickListener {
-
             timerState = TimerState.Running
+            startTimer()
         }
 
 
     }
 
-    private fun pauseTimer() {
+    private fun startTimer() {
+        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
+            override fun onFinish() = onTimerFinished()
+
+            override fun onTick(millisUntilFinished: Long) {
+                secondsRemaining = millisUntilFinished / 1000
+                updateCountdownUI()
+            }
+        }.start()
+    }
+
+    private fun pauseButton() {
         btn_stoper_pause.setOnClickListener {
             timer.cancel()
             timerState = TimerState.Paused
         }
     }
 
-    private fun stopTimer() {
+    private fun stopButton() {
         btn_stoper_stop.setOnClickListener {
             timer.cancel()
             onTimerFinish()
         }
     }
 
+    private fun onTimerFinish() {
+        timerState = TimerState.Stopped
+
+        setNewTimerLength()
+
+        stoper_progress_countdown.progress = 0
+    }
+
     override fun onResume() {
         super.onResume()
         initTimer()
     }
-
-
 }

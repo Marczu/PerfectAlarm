@@ -11,6 +11,8 @@ class AppRepository private constructor(context: Context) {
     private val TAG = "AppRepository"
 
     var alarms: LiveData<List<AlarmEntity>>
+    var stopers: LiveData<List<StoperEntity>>
+
     var db: AppDatabase
     val executor: Executor = Executors.newSingleThreadExecutor()
 
@@ -18,7 +20,10 @@ class AppRepository private constructor(context: Context) {
         Log.d(TAG, "AppRepository started: ")
         db = AppDatabase.getInstance(context)
         alarms = getAllAlarms()
+        stopers = getAllStopers()
     }
+
+
 
     companion object {
         private var ourInstance: AppRepository? = null
@@ -45,6 +50,10 @@ class AppRepository private constructor(context: Context) {
 
     fun getAllAlarms(): LiveData<List<AlarmEntity>> {
         return db.alarmeDao().getall()
+    }
+
+    private fun getAllStopers(): LiveData<List<StoperEntity>> {
+        return db.alarmeDao().getallStopers()
     }
 
     fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
