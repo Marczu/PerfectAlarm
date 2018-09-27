@@ -17,6 +17,7 @@ import com.marcinmejner.simplealarm.utils.SampleStoperData
 import com.marcinmejner.simplealarm.utils.TimerState
 import com.marcinmejner.simplealarm.viewModels.StoperViewModel
 import kotlinx.android.synthetic.main.fragment_stoper.view.*
+import kotlinx.android.synthetic.main.stoper_list_item.*
 
 class StoperFragment : Fragment() {
     private val TAG = "StoperFragment"
@@ -45,6 +46,7 @@ class StoperFragment : Fragment() {
     private fun init(view: View){
         initRecyclerView(view)
         initViewModel()
+        initStoper()
     }
 
     private fun initRecyclerView(view: View) {
@@ -61,6 +63,40 @@ class StoperFragment : Fragment() {
         stoperList.addAll(SampleStoperData().insertStubStoper())
         notesAdapter = StopersRecyclerViewAdapter(stoperList, activity!!, stoperViewModel)
         recyclerView.adapter = notesAdapter
+    }
+
+    private fun initStoper() {
+        startTimer()
+        pauseTimer()
+        stopTimer()
+    }
+
+    private fun startTimer() {
+        btn_stoper_start.setOnClickListener {
+
+            timerState = TimerState.Running
+        }
+
+
+    }
+
+    private fun pauseTimer() {
+        btn_stoper_pause.setOnClickListener {
+            timer.cancel()
+            timerState = TimerState.Paused
+        }
+    }
+
+    private fun stopTimer() {
+        btn_stoper_stop.setOnClickListener {
+            timer.cancel()
+            onTimerFinish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initTimer()
     }
 
 
