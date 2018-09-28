@@ -3,6 +3,7 @@ package com.marcinmejner.simplealarm.model
 import android.arch.lifecycle.LiveData
 import android.content.Context
 import android.util.Log
+import com.marcinmejner.simplealarm.R.string.alarmId
 import com.marcinmejner.simplealarm.utils.SampleAlarmData
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -50,9 +51,7 @@ class AppRepository private constructor(context: Context) {
         return db.alarmeDao().getall()
     }
 
-    private fun getAllStopers(): LiveData<List<StoperEntity>> {
-        return db.alarmeDao().getallStopers()
-    }
+
 
     fun getAlarmById(alarmId: Int): LiveData<AlarmEntity> {
         return db.alarmeDao().getAlarmById(alarmId)
@@ -83,6 +82,34 @@ class AppRepository private constructor(context: Context) {
         executor.execute {
             db.alarmeDao().updateAlarmById(alarmMinutes, alarmHours, snoozeMinutes, name, ringTone,
                     daysOfWeek, isAlarmOn, isSnoozeEnabled, mondayCheck, tuesdayCheck, wednesdayCheck, thursdayCheck, fridayCheck,saturdayCheck, sundayCheck, id)
+        }
+    }
+
+    /*Stoper Repo*/
+    private fun getAllStopers(): LiveData<List<StoperEntity>> {
+        return db.alarmeDao().getallStopers()
+    }
+    fun updateStoperStateById(running: Boolean, stopped: Boolean, paused: Boolean, id: Int){
+        executor.execute {
+            db.alarmeDao().updateStoperStateById(running, stopped, paused, id)
+        }
+    }
+
+    fun updateStoperSecondsRemainingById(timeSecondsRemaining: Long, id: Int){
+        executor.execute {
+            db.alarmeDao().updateStoperSecondsRemainingById(timeSecondsRemaining, id)
+        }
+    }
+
+    fun updateStoperCountdownById(stoperCountDown: Long, id: Int){
+        executor.execute {
+            db.alarmeDao().updateStoperCountdownById(stoperCountDown, id)
+        }
+    }
+
+    fun deleteStoperById(id: Int) {
+        executor.execute {
+            db.alarmeDao().deleteStoperById(id)
         }
     }
 }

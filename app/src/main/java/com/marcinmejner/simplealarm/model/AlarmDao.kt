@@ -45,4 +45,16 @@ interface AlarmDao {
 
     @Query("SELECT * FROM stoper")
     fun getallStopers() : LiveData<List<StoperEntity>>
+
+    @Query("UPDATE stoper SET running = :running, stopped = :stopped, paused = :paused WHERE id = :id")
+    fun updateStoperStateById(running: Boolean, stopped: Boolean, paused: Boolean, id: Int)
+
+    @Query("UPDATE stoper SET timeSecondsRemaining = :timeSecondsRemaining WHERE id = :id")
+    fun updateStoperSecondsRemainingById(timeSecondsRemaining: Long, id: Int)
+
+    @Query("UPDATE stoper SET stoperCountDown = :stoperCountDown WHERE id = :id")
+    fun updateStoperCountdownById(stoperCountDown: Long, id: Int)
+
+    @Query("DELETE FROM stoper WHERE id = :id ")
+    fun deleteStoperById(id: Int) : Int
 }

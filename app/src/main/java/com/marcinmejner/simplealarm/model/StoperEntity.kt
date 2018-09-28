@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "stoper")
 data class StoperEntity(
         @PrimaryKey(autoGenerate = true) var id: Int = 0,
-        var alarmCountDown: Long = 60L,
+        var stoperCountDown: Long = 60L,
         var timeSecondsRemaining: Long = 60L,
         var running: Boolean = false,
         var stopped: Boolean = true,
