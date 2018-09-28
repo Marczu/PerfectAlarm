@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.NumberPicker
 import com.marcinmejner.simplealarm.R
-import com.marcinmejner.simplealarm.adapters.AlarmsRecyclerViewAdapter
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import com.marcinmejner.simplealarm.viewModels.AlarmEditorViewModel
 import kotlinx.android.synthetic.main.activity_alarm_editor.*

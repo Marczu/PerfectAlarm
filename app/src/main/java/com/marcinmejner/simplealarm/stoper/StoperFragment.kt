@@ -1,6 +1,7 @@
 package com.marcinmejner.simplealarm.stoper
 
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -24,7 +25,7 @@ class StoperFragment : Fragment() {
 
     //widgets
     lateinit var recyclerView: RecyclerView
-    private lateinit var timer: CountDownTimer
+
 
     var stoperList = ArrayList<StoperEntity>()
     var notesAdapter: StopersRecyclerViewAdapter? = null
@@ -46,7 +47,6 @@ class StoperFragment : Fragment() {
     private fun init(view: View){
         initRecyclerView(view)
         initViewModel()
-        initStoper()
     }
 
     private fun initRecyclerView(view: View) {
@@ -57,64 +57,19 @@ class StoperFragment : Fragment() {
     }
 
     private fun initViewModel() {
+        val stopersObserver: Observer<List<StoperEntity>> = Observer {
+            stoperList.clear()
+            stoperList.addAll(it!!)
+
+            notesAdapter?.notifyDataSetChanged()
+        }
+
         stoperViewModel = ViewModelProviders.of(this)
                 .get(StoperViewModel::class.java)
+        stoperViewModel.stopers.observe(this, stopersObserver)
 
         stoperList.addAll(SampleStoperData().insertStubStoper())
         notesAdapter = StopersRecyclerViewAdapter(stoperList, activity!!, stoperViewModel)
         recyclerView.adapter = notesAdapter
-    }
-
-    private fun initStoper() {
-        startButton()
-        pauseButton()
-        stopButton()
-    }
-
-    private fun startButton() {
-        btn_stoper_start.setOnClickListener {
-            timerState = TimerState.Running
-            startTimer()
-        }
-
-
-    }
-
-    private fun startTimer() {
-        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
-            override fun onFinish() = onTimerFinished()
-
-            override fun onTick(millisUntilFinished: Long) {
-                secondsRemaining = millisUntilFinished / 1000
-                updateCountdownUI()
-            }
-        }.start()
-    }
-
-    private fun pauseButton() {
-        btn_stoper_pause.setOnClickListener {
-            timer.cancel()
-            timerState = TimerState.Paused
-        }
-    }
-
-    private fun stopButton() {
-        btn_stoper_stop.setOnClickListener {
-            timer.cancel()
-            onTimerFinish()
-        }
-    }
-
-    private fun onTimerFinish() {
-        timerState = TimerState.Stopped
-
-        setNewTimerLength()
-
-        stoper_progress_countdown.progress = 0
-    }
-
-    override fun onResume() {
-        super.onResume()
-        initTimer()
     }
 }

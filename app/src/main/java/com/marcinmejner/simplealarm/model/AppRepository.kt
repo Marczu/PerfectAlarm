@@ -23,8 +23,6 @@ class AppRepository private constructor(context: Context) {
         stopers = getAllStopers()
     }
 
-
-
     companion object {
         private var ourInstance: AppRepository? = null
 
@@ -48,7 +46,7 @@ class AppRepository private constructor(context: Context) {
         }
     }
 
-    fun getAllAlarms(): LiveData<List<AlarmEntity>> {
+    private fun getAllAlarms(): LiveData<List<AlarmEntity>> {
         return db.alarmeDao().getall()
     }
 
