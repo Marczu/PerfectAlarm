@@ -19,6 +19,10 @@ class StoperEditorViewModel(application: Application) : AndroidViewModel(applica
         stopers = repository.stopers
     }
 
+    fun addNewStoper(newStoper: StoperEntity) {
+            repository.addNewStoper(newStoper)
+    }
+
     fun updateStoperStateById(running: Boolean, stopped: Boolean, paused: Boolean, id: Int){
         repository.updateStoperStateById(running, stopped, paused, id)
     }

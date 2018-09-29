@@ -43,6 +43,9 @@ interface AlarmDao {
 
     /*---------------------------Stopers DB-----------------------------------------------------*/
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertStoper(stoperEntity: StoperEntity)
+
     @Query("SELECT * FROM stoper")
     fun getallStopers() : LiveData<List<StoperEntity>>
 

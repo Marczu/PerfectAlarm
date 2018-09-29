@@ -86,6 +86,14 @@ class AppRepository private constructor(context: Context) {
     }
 
     /*Stoper Repo*/
+
+    fun addNewStoper(newStoper: StoperEntity) {
+        executor.execute {
+            db.alarmeDao().insertStoper(newStoper)
+        }
+    }
+
+
     private fun getAllStopers(): LiveData<List<StoperEntity>> {
         return db.alarmeDao().getallStopers()
     }
