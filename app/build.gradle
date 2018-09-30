@@ -29,34 +29,13 @@ dependencies {
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-
-
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    // alternatively - just ViewModel
-    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version" // use -ktx for Kotlin
-    // alternatively - just LiveData
-
-    //     Support library depends on this lightweight import
-    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
-
-    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version" // use kapt for Kotlin
-
-
-
-
-    // optional - Test helpers for LiveData
-    testImplementation "android.arch.core:core-testing:$lifecycle_version"
-
-    //Room
-    def room_version = "1.1.1"
-
     implementation "android.arch.persistence.room:runtime:$room_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$room_version" // use kapt for Kotlin
+    implementation 'com.android.support:support-v4:27.1.1'
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    androidTestImplementation "android.arch.core:core-testing:1.1.1"
 
     // optional - RxJava support for Room
     implementation "android.arch.persistence.room:rxjava2:$room_version"
-
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -82,9 +61,9 @@ dependencies {
     implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

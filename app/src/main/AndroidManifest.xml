@@ -44,7 +44,10 @@
             android:launchMode="singleTop"
             android:screenOrientation="sensorPortrait"
             android:showOnLockScreen="true" />
-        <activity android:name=".stoper.StoperEditor"></activity>
+
+        <activity android:name=".stoper.StoperEditor"
+            android:windowSoftInputMode="stateHidden"/>
+
     </application>
 
 </manifest>

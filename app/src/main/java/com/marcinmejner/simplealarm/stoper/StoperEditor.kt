@@ -8,35 +8,31 @@ import com.marcinmejner.simplealarm.R
 import com.marcinmejner.simplealarm.viewModels.StoperEditorViewModel
 
 class StoperEditor : AppCompatActivity() {
+    private val TAG = "StoperEditor"
 
-    class StoperEditor : AppCompatActivity() {
-        private val TAG = "StoperEditor"
+    //widgets
+    lateinit var hourPicker: NumberPicker
+    lateinit var minutePicker: NumberPicker
+    lateinit var secPicker: NumberPicker
 
-        //widgets
-        lateinit var hourPicker: NumberPicker
-        lateinit var minutePicker: NumberPicker
-        lateinit var secPicker: NumberPicker
+    //vars
+    lateinit var stoperEditorViewModel: StoperEditorViewModel
 
-        //vars
-        lateinit var stoperEditorViewModel: StoperEditorViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_stoper_editor)
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_alarm_editor)
+        init()
+    }
 
-            init()
-        }
+    private fun init() {
+        initViewModel()
+    }
 
-        private fun init() {
-            initViewModel()
-        }
-
-        private fun initViewModel() {
-            stoperEditorViewModel = ViewModelProviders.of(this)
-                    .get(StoperEditorViewModel::class.java)
-
-        }
-
+    private fun initViewModel() {
+        stoperEditorViewModel = ViewModelProviders.of(this)
+                .get(StoperEditorViewModel::class.java)
 
     }
 }
+
