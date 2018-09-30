@@ -1,6 +1,7 @@
 package com.marcinmejner.simplealarm.alarm
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.media.MediaPlayer
 import android.os.Bundle

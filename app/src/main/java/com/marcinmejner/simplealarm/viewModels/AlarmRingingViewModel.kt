@@ -4,9 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.content.Context
 import android.media.MediaPlayer
-import android.util.Log
 import com.marcinmejner.simplealarm.model.AlarmEntity
 import com.marcinmejner.simplealarm.model.AppRepository
 import java.text.SimpleDateFormat

@@ -4,7 +4,6 @@ package com.marcinmejner.simplealarm.stoper
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -18,7 +17,6 @@ import com.marcinmejner.simplealarm.utils.SampleStoperData
 import com.marcinmejner.simplealarm.utils.TimerState
 import com.marcinmejner.simplealarm.viewModels.StoperViewModel
 import kotlinx.android.synthetic.main.fragment_stoper.view.*
-import kotlinx.android.synthetic.main.stoper_list_item.*
 
 class StoperFragment : Fragment() {
     private val TAG = "StoperFragment"

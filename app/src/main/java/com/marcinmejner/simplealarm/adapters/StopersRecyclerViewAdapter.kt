@@ -49,46 +49,46 @@ class StopersRecyclerViewAdapter(val stoperList: ArrayList<StoperEntity>, val co
     }
 
     private fun startButton(holder: ViewHolder, position: Int) {
-        btn_stoper_start.setOnClickListener {
-            timerState = TimerState.Running
-            startTimer(holder, position)
-        }
-
-
+//        btn_stoper_start.setOnClickListener {
+//            timerState = TimerState.Running
+//            startTimer(holder, position)
     }
 
-    private fun startTimer(holder: ViewHolder, position: Int) {
-        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
-            override fun onFinish() = onTimerFinished()
+    private fun startTimer(holder: StopersRecyclerViewAdapter.ViewHolder, position: Int) {
+//        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
+//            override fun onFinish() = onTimerFinished()
 
-            override fun onTick(millisUntilFinished: Long) {
-                secondsRemaining = millisUntilFinished / 1000
-                updateCountdownUI()
-            }
-        }.start()
+//            override fun onTick(millisUntilFinished: Long) {
+////                secondsRemaining = millisUntilFinished / 1000
+////                updateCountdownUI()
+//            }
+//        }.start()
     }
 
-    private fun pauseButton(holder: ViewHolder, position: Int) {
-        btn_stoper_pause.setOnClickListener {
-            timer.cancel()
-            timerState = TimerState.Paused
-        }
+    private fun pauseButton(holder: StopersRecyclerViewAdapter.ViewHolder, position: Int) {
+//        btn_stoper_pause.setOnClickListener {
+//            timer.cancel()
+//            timerState = TimerState.Paused
     }
 
-    private fun stopButton(holder: ViewHolder, position: Int) {
-        btn_stoper_stop.setOnClickListener {
-            timer.cancel()
-            onTimerFinish()
-        }
+
+    private fun stopButton(holder: StopersRecyclerViewAdapter.ViewHolder, position: Int) {
+//        btn_stoper_stop.setOnClickListener {
+//            timer.cancel()
+//            onTimerFinish()
     }
 
-    private fun onTimerFinish(holder: ViewHolder, position: Int) {
-        timerState = TimerState.Stopped
 
-        setNewTimerLength()
-
-        stoper_progress_countdown.progress = 0
+    private fun onTimerFinish(holder: StopersRecyclerViewAdapter.ViewHolder, position: Int) {
+//        timerState = TimerState.Stopped
+//
+//        setNewTimerLength()
+//
+//        stoper_progress_countdown.progress = 0
     }
-
 
 }
+
+
+
+

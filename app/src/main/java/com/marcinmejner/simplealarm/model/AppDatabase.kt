@@ -9,7 +9,7 @@ import android.content.Context
 import com.marcinmejner.simplealarm.utils.SampleAlarmData
 import kotlinx.coroutines.experimental.launch
 
-@Database(entities = [(AlarmEntity::class)], version = 1)
+@Database(entities = [(AlarmEntity::class), StoperEntity::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     private val TAG = "AppDatabase"

@@ -2,7 +2,6 @@ package com.marcinmejner.simplealarm
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.marcinmejner.simplealarm.alarm.AlarmsFragment
@@ -30,7 +29,7 @@ class MainScreenContainer : AppCompatActivity(), BottomNavigationView.OnNavigati
     }
 
     /*Displaying fragment selected by botNavView*/
-    private fun displayFragment(fragment: Fragment) {
+    private fun displayFragment(fragment: android.support.v4.app.Fragment) {
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.container, fragment)
