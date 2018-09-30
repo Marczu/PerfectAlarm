@@ -45,6 +45,7 @@ class AlarmStarterSetup {
         if (pendingIntentsList.isNotEmpty())
             pendingIntentsList.forEach { alarmManager.cancel(it) }
 
+
         currentAlarms.forEach { alarm ->
             if (alarm.mondayCheck) setAlarm(context, 2, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)
             if (alarm.tuesdayCheck) setAlarm(context, 3, alarm.alarmHours!!.toInt(), alarm.alarmMinutes!!.toInt(), alarm.id)

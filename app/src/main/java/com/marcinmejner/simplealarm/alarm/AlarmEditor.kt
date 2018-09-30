@@ -44,7 +44,7 @@ class AlarmEditor : AppCompatActivity() {
                 .get(AlarmEditorViewModel::class.java)
 
         editorViewModel.snoozeTime.observe(this, android.arch.lifecycle.Observer {
-            Log.d(TAG, "initViewModel: z obserwera : ${it!!}")
+            Log.d(TAG, "initViewModel: z obserwera  : ${it!!}")
             edit_snooze_minutes_et.text = "$it minut"
         })
 
